@@ -1,26 +1,132 @@
 @import "tailwindcss";
 
+/* ─── Design Tokens ──────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand Colors */
+  --gold: #B8860B;
+  --gold-light: #D4A843;
+  --gold-lighter: #E8C972;
+  --gold-dark: #8B6508;
+  --purple: #6B2D8B;
+  --purple-light: #8B4DAB;
+  --purple-dark: #4A1D6B;
+
+  /* Neutrals */
+  --white: #FFFFFF;
+  --off-white: #F8F6F3;
+  --cream: #FBF8F2;
+  --gray-50: #F9FAFB;
+  --gray-100: #F3F4F6;
+  --gray-200: #E5E7EB;
+  --gray-300: #D1D5DB;
+  --gray-400: #9CA3AF;
+  --gray-500: #6B7280;
+  --gray-600: #4B5563;
+  --gray-700: #374151;
+  --gray-800: #1F2937;
+  --gray-900: #111827;
+
+  /* Semantic */
+  --success: #059669;
+  --warning: #D97706;
+  --error: #DC2626;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Brand colors */
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-lighter: var(--gold-lighter);
+  --color-gold-dark: var(--gold-dark);
+  --color-purple: var(--purple);
+  --color-purple-light: var(--purple-light);
+  --color-purple-dark: var(--purple-dark);
+
+  /* Neutrals */
+  --color-cream: var(--cream);
+  --color-off-white: var(--off-white);
+
+  /* Semantic */
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+
+  /* Fonts */
+  --font-heading: var(--font-playfair-display), Georgia, "Times New Roman", serif;
+  --font-body: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-accent: var(--font-cormorant-garamond), Georgia, serif;
+
+  /* Shadows */
+  --shadow-gold: 0 4px 20px rgba(184, 134, 11, 0.18);
+  --shadow-purple: 0 4px 20px rgba(107, 45, 139, 0.18);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Base Styles ────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  color: var(--gray-700);
+  background-color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--gray-900);
+  line-height: 1.2;
+}
+
+/* ─── Animations ─────────────────────────────────────────────── */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s ease forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 8s ease-in-out infinite;
+}
+
+/* ─── Utility ────────────────────────────────────────────────── */
+.gradient-gold {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+}
+
+.gradient-purple {
+  background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+}
+
+.gradient-hero {
+  background: linear-gradient(160deg, #0c0814 0%, #150d24 20%, #231340 45%, #1a1230 65%, #0c0814 100%);
+}
+
+.gradient-cta {
+  background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 40%, var(--gold-dark) 100%);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, var(--gold-lighter), var(--gold-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

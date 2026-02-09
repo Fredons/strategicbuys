@@ -1,0 +1,213 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ─── Authentication (Auth.js managed) ───────────────────────────
+
+model User {
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  emailVerified DateTime?
+  passwordHash  String
+  image         String?
+  role          UserRole  @default(ADMIN)
+
+  accounts Account[]
+  sessions Session[]
+  posts    BlogPost[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+enum UserRole {
+  ADMIN
+  EDITOR
+}
+
+// ─── Blog ───────────────────────────────────────────────────────
+
+model BlogPost {
+  id            String     @id @default(cuid())
+  title         String     @db.VarChar(255)
+  slug          String     @unique @db.VarChar(255)
+  excerpt       String?    @db.VarChar(500)
+  content       String     @db.Text
+  featuredImage String?    @db.VarChar(500)
+
+  status      PostStatus @default(DRAFT)
+  publishedAt DateTime?
+
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id])
+
+  categoryId String?
+  category   Category? @relation(fields: [categoryId], references: [id])
+
+  tags Tag[] @relation("BlogPostTags")
+
+  metaTitle       String? @db.VarChar(70)
+  metaDescription String? @db.VarChar(160)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status, publishedAt(sort: Desc)])
+  @@index([slug])
+  @@index([categoryId])
+  @@map("blog_posts")
+}
+
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+model Category {
+  id          String  @id @default(cuid())
+  name        String  @db.VarChar(100)
+  slug        String  @unique @db.VarChar(100)
+  description String? @db.VarChar(300)
+
+  posts BlogPost[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("categories")
+}
+
+model Tag {
+  id   String @id @default(cuid())
+  name String @unique @db.VarChar(50)
+  slug String @unique @db.VarChar(50)
+
+  posts BlogPost[] @relation("BlogPostTags")
+
+  @@map("tags")
+}
+
+// ─── Enquiries (Contact Form Submissions) ───────────────────────
+
+model Enquiry {
+  id      String  @id @default(cuid())
+  name    String  @db.VarChar(200)
+  email   String  @db.VarChar(255)
+  phone   String? @db.VarChar(30)
+  service String? @db.VarChar(100)
+  budget  String? @db.VarChar(100)
+  message String  @db.Text
+
+  status EnquiryStatus @default(NEW)
+  notes  String?       @db.Text
+
+  source String? @db.VarChar(50)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status, createdAt(sort: Desc)])
+  @@map("enquiries")
+}
+
+enum EnquiryStatus {
+  NEW
+  READ
+  REPLIED
+  ARCHIVED
+}
+
+// ─── Newsletter ─────────────────────────────────────────────────
+
+model Subscriber {
+  id    String  @id @default(cuid())
+  email String  @unique @db.VarChar(255)
+  name  String? @db.VarChar(100)
+
+  status         SubscriberStatus @default(ACTIVE)
+  subscribedAt   DateTime         @default(now())
+  unsubscribedAt DateTime?
+
+  @@index([status])
+  @@map("subscribers")
+}
+
+enum SubscriberStatus {
+  ACTIVE
+  UNSUBSCRIBED
+}
+
+// ─── Site Settings ──────────────────────────────────────────────
+
+model SiteSettings {
+  id String @id @default("singleton")
+
+  siteName        String  @default("Strategic Buys") @db.VarChar(100)
+  siteDescription String? @db.VarChar(300)
+  contactEmail    String? @db.VarChar(255)
+  contactPhone    String? @db.VarChar(30)
+  address         String? @db.Text
+
+  facebookUrl  String? @db.VarChar(500)
+  instagramUrl String? @db.VarChar(500)
+  linkedinUrl  String? @db.VarChar(500)
+  youtubeUrl   String? @db.VarChar(500)
+
+  defaultMetaTitle       String? @db.VarChar(70)
+  defaultMetaDescription String? @db.VarChar(160)
+  googleAnalyticsId      String? @db.VarChar(50)
+
+  updatedAt DateTime @updatedAt
+
+  @@map("site_settings")
+}
