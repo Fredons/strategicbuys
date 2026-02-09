@@ -14,15 +14,16 @@ interface PageHeaderProps {
 
 export function PageHeader({ title, subtitle, breadcrumbs }: PageHeaderProps) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-gray-900 to-purple-dark pt-32 pb-12 text-center lg:pt-36 lg:pb-16">
-      {/* Decorative orb */}
-      <div className="pointer-events-none absolute -top-1/4 -right-[8%] h-[400px] w-[400px] rounded-full bg-gold/[0.04]" />
+    <section className="gradient-page-header relative overflow-hidden pt-32 pb-14 text-center lg:pt-40 lg:pb-20">
+      {/* Decorative elements */}
+      <div className="pointer-events-none absolute -top-1/4 -right-[8%] h-[400px] w-[400px] rounded-full bg-gold/[0.05]" />
+      <div className="pointer-events-none absolute -bottom-1/3 -left-[10%] h-[300px] w-[300px] rounded-full bg-purple-light/[0.06]" />
 
       <div className="relative mx-auto max-w-[1200px] px-6 lg:px-8">
         {/* Breadcrumbs */}
         {breadcrumbs && breadcrumbs.length > 0 && (
           <nav
-            className="mb-5 flex items-center justify-center gap-1.5 text-xs text-white/40"
+            className="mb-6 flex items-center justify-center gap-1.5 text-sm text-white/50"
             aria-label="Breadcrumb"
           >
             <Link href="/" className="text-gold-light transition-colors hover:text-gold-lighter">
@@ -30,13 +31,13 @@ export function PageHeader({ title, subtitle, breadcrumbs }: PageHeaderProps) {
             </Link>
             {breadcrumbs.map((crumb, i) => (
               <span key={i} className="flex items-center gap-1.5">
-                <ChevronRight className="h-3 w-3" />
+                <ChevronRight className="h-3.5 w-3.5" />
                 {crumb.href ? (
                   <Link href={crumb.href} className="text-gold-light transition-colors hover:text-gold-lighter">
                     {crumb.label}
                   </Link>
                 ) : (
-                  <span>{crumb.label}</span>
+                  <span className="text-white/70">{crumb.label}</span>
                 )}
               </span>
             ))}
@@ -47,7 +48,7 @@ export function PageHeader({ title, subtitle, breadcrumbs }: PageHeaderProps) {
           {title}
         </h1>
         {subtitle && (
-          <p className="mx-auto mt-3 max-w-[560px] text-base text-white/65 lg:text-lg">
+          <p className="mx-auto mt-4 max-w-[580px] text-base leading-relaxed text-white/70 lg:text-lg">
             {subtitle}
           </p>
         )}

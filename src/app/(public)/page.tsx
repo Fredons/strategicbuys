@@ -74,61 +74,69 @@ export default async function HomePage() {
       />
 
       {/* ── Hero ──────────────────────────────────────────── */}
-      <section className="gradient-hero relative flex min-h-screen items-center overflow-hidden pt-20">
-        {/* Decorative orbs */}
-        <div className="animate-pulse-glow pointer-events-none absolute top-[10%] right-[5%] h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle,rgba(184,134,11,0.07)_0%,transparent_65%)]" />
-        <div className="animate-pulse-glow pointer-events-none absolute -left-[5%] bottom-[5%] h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle,rgba(107,45,139,0.06)_0%,transparent_65%)]" style={{ animationDirection: "reverse", animationDuration: "10s" }} />
+      <section className="relative flex min-h-[90vh] items-center overflow-hidden pt-20 lg:min-h-screen">
+        {/* Background Image */}
+        <Image
+          src="/images/hero-home.jpg"
+          alt="Australian property"
+          fill
+          className="object-cover"
+          priority
+        />
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 via-gray-900/75 to-gray-900/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-gray-900/30" />
 
-        {/* Overlay */}
-        <div className="absolute inset-0 z-[1] bg-gradient-to-br from-black/60 via-purple-dark/30 to-black/50" />
+        {/* Decorative gold accent */}
+        <div className="animate-pulse-glow pointer-events-none absolute top-[15%] right-[10%] h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(198,150,44,0.08)_0%,transparent_65%)]" />
 
-        <div className="relative z-[2] mx-auto max-w-[1200px] px-6 py-16 lg:px-8 lg:py-20">
-          <div className="max-w-[660px]">
+        <div className="relative z-[2] mx-auto max-w-[1200px] px-6 py-16 lg:px-8 lg:py-24">
+          <div className="max-w-[640px]">
             {/* Label */}
-            <div className="mb-5 inline-flex items-center gap-1.5 rounded-full border border-gold/25 bg-gold/[0.12] px-4 py-1.5 text-[0.7rem] font-semibold uppercase tracking-widest text-gold-light">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-5 py-2 text-xs font-bold uppercase tracking-[0.15em] text-gold-lighter">
               <Star className="h-3.5 w-3.5" />
               Australia&apos;s Trusted Buyer&apos;s Agency
             </div>
 
-            <h1 className="font-heading text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
+            <h1 className="font-heading text-4xl font-bold leading-[1.1] text-white md:text-5xl lg:text-[3.5rem]">
               Buy Smarter. Save Thousands.{" "}
               <span className="text-gradient-gold">Love Your Property.</span>
             </h1>
 
-            <p className="mt-5 max-w-[520px] text-lg leading-relaxed text-white/75">
+            <p className="mt-6 max-w-[500px] text-base leading-relaxed text-white/80 md:text-lg">
               Australia&apos;s trusted buyer&apos;s agents. We find, negotiate, and
               secure properties exclusively for you &mdash; saving you time, money,
               and the stress of doing it alone.
             </p>
 
             {/* CTAs */}
-            <div className="mt-7 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/contact"
-                className="gradient-gold inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold text-white shadow-[--shadow-gold] transition-all hover:-translate-y-0.5 hover:shadow-lg"
+                className="gradient-gold inline-flex items-center gap-2 rounded-lg px-7 py-3.5 text-sm font-bold text-white shadow-[--shadow-gold] transition-all hover:-translate-y-0.5 hover:shadow-lg"
               >
                 Book a Free Strategy Call
               </Link>
               <Link
                 href="/services"
-                className="inline-flex items-center gap-2 rounded-lg border-2 border-gold bg-transparent px-6 py-3 text-sm font-semibold text-gold-light transition-all hover:-translate-y-0.5 hover:bg-gold hover:text-white"
+                className="inline-flex items-center gap-2 rounded-lg border-2 border-white/20 bg-white/5 px-7 py-3.5 text-sm font-bold text-white backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-gold hover:bg-gold/10 hover:text-gold-lighter"
               >
                 See How We Help
               </Link>
             </div>
 
             {/* Stats */}
-            <div className="mt-12 flex flex-wrap gap-8 border-t border-white/[0.08] pt-8 lg:gap-12">
+            <div className="mt-14 flex flex-wrap gap-10 border-t border-white/10 pt-8 lg:gap-14">
               {[
                 { value: siteConfig.stats.propertyTransacted, label: "Property Transacted" },
                 { value: siteConfig.stats.happyClients, label: "Happy Clients" },
                 { value: siteConfig.stats.yearsExperience, label: "Years Experience" },
               ].map((stat) => (
-                <div key={stat.label} className="min-w-[120px]">
+                <div key={stat.label}>
                   <div className="font-heading text-2xl font-bold text-gold-light lg:text-3xl">
                     {stat.value}
                   </div>
-                  <div className="text-[0.7rem] font-medium uppercase tracking-widest text-white/50">
+                  <div className="mt-1 text-xs font-medium uppercase tracking-[0.15em] text-white/50">
                     {stat.label}
                   </div>
                 </div>

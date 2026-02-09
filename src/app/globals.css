@@ -2,34 +2,37 @@
 
 /* ─── Design Tokens ──────────────────────────────────────────── */
 :root {
-  /* Brand Colors */
-  --gold: #B8860B;
-  --gold-light: #D4A843;
-  --gold-lighter: #E8C972;
-  --gold-dark: #8B6508;
-  --purple: #6B2D8B;
-  --purple-light: #8B4DAB;
-  --purple-dark: #4A1D6B;
+  /* Brand Colors — warm, premium gold palette */
+  --gold: #C6962C;
+  --gold-light: #DBAF4A;
+  --gold-lighter: #F0D078;
+  --gold-dark: #A47B1F;
+  --gold-muted: #E8D5A3;
 
-  /* Neutrals */
+  /* Purple — refined, deep, elegant */
+  --purple: #5B2D7A;
+  --purple-light: #7B4D9A;
+  --purple-dark: #3D1A5C;
+
+  /* Neutrals — warmer grays for elegance */
   --white: #FFFFFF;
-  --off-white: #F8F6F3;
-  --cream: #FBF8F2;
-  --gray-50: #F9FAFB;
-  --gray-100: #F3F4F6;
-  --gray-200: #E5E7EB;
-  --gray-300: #D1D5DB;
-  --gray-400: #9CA3AF;
-  --gray-500: #6B7280;
-  --gray-600: #4B5563;
-  --gray-700: #374151;
-  --gray-800: #1F2937;
-  --gray-900: #111827;
+  --off-white: #FAF8F5;
+  --cream: #F5F0E8;
+  --gray-50: #F7F5F2;
+  --gray-100: #EEEBE6;
+  --gray-200: #DDD8D0;
+  --gray-300: #C4BDB3;
+  --gray-400: #9A9389;
+  --gray-500: #716B62;
+  --gray-600: #524D46;
+  --gray-700: #3A3631;
+  --gray-800: #262320;
+  --gray-900: #1A1816;
 
   /* Semantic */
-  --success: #059669;
-  --warning: #D97706;
-  --error: #DC2626;
+  --success: #2D8F5E;
+  --warning: #D4881A;
+  --error: #C43B3B;
 }
 
 @theme inline {
@@ -38,11 +41,24 @@
   --color-gold-light: var(--gold-light);
   --color-gold-lighter: var(--gold-lighter);
   --color-gold-dark: var(--gold-dark);
+  --color-gold-muted: var(--gold-muted);
   --color-purple: var(--purple);
   --color-purple-light: var(--purple-light);
   --color-purple-dark: var(--purple-dark);
 
-  /* Neutrals */
+  /* Override Tailwind's gray scale with our warm neutrals */
+  --color-gray-50: var(--gray-50);
+  --color-gray-100: var(--gray-100);
+  --color-gray-200: var(--gray-200);
+  --color-gray-300: var(--gray-300);
+  --color-gray-400: var(--gray-400);
+  --color-gray-500: var(--gray-500);
+  --color-gray-600: var(--gray-600);
+  --color-gray-700: var(--gray-700);
+  --color-gray-800: var(--gray-800);
+  --color-gray-900: var(--gray-900);
+
+  /* Named neutrals */
   --color-cream: var(--cream);
   --color-off-white: var(--off-white);
 
@@ -57,8 +73,10 @@
   --font-accent: var(--font-cormorant-garamond), Georgia, serif;
 
   /* Shadows */
-  --shadow-gold: 0 4px 20px rgba(184, 134, 11, 0.18);
-  --shadow-purple: 0 4px 20px rgba(107, 45, 139, 0.18);
+  --shadow-gold: 0 4px 24px rgba(198, 150, 44, 0.20);
+  --shadow-purple: 0 4px 24px rgba(91, 45, 122, 0.16);
+  --shadow-soft: 0 2px 16px rgba(26, 24, 22, 0.06);
+  --shadow-card: 0 1px 3px rgba(26, 24, 22, 0.04), 0 6px 24px rgba(26, 24, 22, 0.06);
 }
 
 /* ─── Base Styles ────────────────────────────────────────────── */
@@ -69,7 +87,7 @@ html {
 
 body {
   font-family: var(--font-body);
-  color: var(--gray-700);
+  color: var(--gray-600);
   background-color: var(--white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -78,7 +96,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  color: var(--gray-900);
+  color: var(--gray-800);
   line-height: 1.2;
 }
 
@@ -99,17 +117,26 @@ h1, h2, h3, h4, h5, h6 {
   50% { opacity: 1; transform: scale(1.05); }
 }
 
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
 .animate-fade-in-up {
-  animation: fade-in-up 0.5s ease forwards;
+  animation: fade-in-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .animate-pulse-glow {
   animation: pulse-glow 8s ease-in-out infinite;
 }
 
-/* ─── Utility ────────────────────────────────────────────────── */
+/* ─── Utility Classes ────────────────────────────────────────── */
 .gradient-gold {
-  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+}
+
+.gradient-gold-soft {
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
 }
 
 .gradient-purple {
@@ -117,16 +144,72 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .gradient-hero {
-  background: linear-gradient(160deg, #0c0814 0%, #150d24 20%, #231340 45%, #1a1230 65%, #0c0814 100%);
+  background: linear-gradient(160deg, #1a1816 0%, #2a1f3d 30%, #3D1A5C 50%, #2a1f3d 70%, #1a1816 100%);
 }
 
 .gradient-cta {
-  background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 40%, var(--gold-dark) 100%);
+  background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 50%, var(--gold-dark) 100%);
+}
+
+.gradient-page-header {
+  background: linear-gradient(160deg, var(--gray-800) 0%, var(--purple-dark) 60%, #2a1f3d 100%);
+}
+
+.gradient-section-alt {
+  background: linear-gradient(180deg, var(--off-white) 0%, var(--cream) 100%);
 }
 
 .text-gradient-gold {
-  background: linear-gradient(135deg, var(--gold-lighter), var(--gold-light));
+  background: linear-gradient(135deg, var(--gold-lighter), var(--gold));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* ─── Premium Card Styles ───────────────────────────────────── */
+.card-premium {
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card-premium:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(26, 24, 22, 0.10);
+  border-color: var(--gold-muted);
+}
+
+/* ─── Section Label ─────────────────────────────────────────── */
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.section-label::before {
+  content: "——  ";
+  color: var(--gold-muted);
+}
+
+/* ─── Gold Divider ──────────────────────────────────────────── */
+.divider-gold {
+  width: 48px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+}
+
+/* ─── Form focus ring ───────────────────────────────────────── */
+.focus-ring {
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.focus-ring:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(198, 150, 44, 0.12);
+  outline: none;
 }
