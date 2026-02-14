@@ -62,8 +62,17 @@ export function Header() {
             </Link>
           </nav>
 
-          {/* Mobile Navigation */}
-          <MobileNav />
+          {/* Mobile CTA + Navigation */}
+          <div className="flex items-center gap-3 lg:hidden">
+            <Link
+              href="/contact"
+              className="gradient-gold inline-flex items-center gap-1.5 rounded-lg px-3.5 py-2 text-xs font-semibold text-white shadow-sm transition-all hover:shadow-md"
+            >
+              <Phone className="h-3 w-3" />
+              Free Call
+            </Link>
+            <MobileNav />
+          </div>
         </div>
       </header>
     </div>

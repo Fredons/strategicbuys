@@ -22,9 +22,9 @@ export const siteConfig = {
   },
   stats: {
     propertyTransacted: "$100M+",
-    happyClients: "500+",
-    yearsExperience: "15+",
-    rating: 4.9,
+    happyClients: "300+",
+    yearsExperience: "10+",
+    rating: 5.0,
     reviewCount: 127,
   },
 } as const;

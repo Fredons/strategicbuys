@@ -144,7 +144,7 @@ export default async function HomePage() {
             {[
               { icon: ShieldCheck, title: "Licensed & Insured", subtitle: "Fully licensed buyer's agents" },
               { icon: Eye, title: "100% Independent", subtitle: "We never represent sellers" },
-              { icon: CheckCircle, title: "500+ Clients", subtitle: "Across all capital cities" },
+              { icon: CheckCircle, title: "300+ Clients", subtitle: "Across all capital cities" },
               { icon: Search, title: "Off-Market Access", subtitle: "Before they hit the market" },
             ].map(({ icon: Icon, title, subtitle }) => (
               <div
