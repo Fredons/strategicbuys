@@ -125,7 +125,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <article className="py-10 lg:py-14">
         <div className="mx-auto max-w-[800px] px-6 lg:px-8">
           {/* Meta */}
-          <div className="mb-8 flex flex-wrap items-center gap-4 text-sm text-gray-400">
+          <div className="mb-8 flex flex-wrap items-center gap-4 text-sm text-gray-500">
             {post.category && (
               <Link
                 href={`/blog?category=${post.category.slug}`}
@@ -175,7 +175,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           {/* Tags */}
           {post.tags.length > 0 && (
             <div className="mt-10 flex flex-wrap items-center gap-2 border-t border-gray-100 pt-6">
-              <span className="text-xs font-semibold uppercase tracking-wide text-gray-400">
+              <span className="text-xs font-semibold uppercase tracking-wide text-gray-500">
                 Tags:
               </span>
               {post.tags.map((tag: { id: string; name: string }) => (

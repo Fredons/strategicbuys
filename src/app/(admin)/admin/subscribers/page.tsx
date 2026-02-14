@@ -69,7 +69,7 @@ export default async function AdminSubscribersPage() {
                         sub.status.slice(1).toLowerCase()}
                     </span>
                   </td>
-                  <td className="px-5 py-3 text-sm text-gray-400">
+                  <td className="px-5 py-3 text-sm text-gray-500">
                     {formatDate(sub.subscribedAt)}
                   </td>
                 </tr>
@@ -78,7 +78,7 @@ export default async function AdminSubscribersPage() {
               <tr>
                 <td
                   colSpan={4}
-                  className="px-5 py-12 text-center text-sm text-gray-400"
+                  className="px-5 py-12 text-center text-sm text-gray-500"
                 >
                   No subscribers yet. They will appear here when users subscribe
                   via the newsletter form.

@@ -242,7 +242,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ── Process ───────────────────────────────────────── */}
-      <section className="bg-gray-900 py-16 text-white lg:py-20">
+      <section className="gradient-hero py-16 text-white lg:py-20">
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <div className="text-center">
             <div className="mb-2 flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-gold-light">
@@ -255,13 +255,13 @@ export default function ServicesPage() {
           </div>
           <div className="mt-10 grid gap-8 md:grid-cols-2">
             {processSteps.map((step) => (
-              <div key={step.number} className="flex items-start gap-5 py-4">
+              <div key={step.number} className="flex items-start gap-5 rounded-xl bg-white/[0.04] p-5">
                 <div className="gradient-gold flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-full font-heading text-lg font-bold text-white shadow-[--shadow-gold]">
                   {step.number}
                 </div>
                 <div>
                   <h4 className="font-heading text-lg font-bold text-white">{step.title}</h4>
-                  <p className="mt-1 text-sm leading-relaxed text-gray-400">{step.description}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-white/60">{step.description}</p>
                 </div>
               </div>
             ))}

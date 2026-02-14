@@ -74,50 +74,50 @@ export default async function AdminEnquiryDetailPage({
             <h3 className="mb-4 text-sm font-bold text-gray-900">Details</h3>
             <div className="space-y-3">
               <div className="flex items-start gap-3 text-sm">
-                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-gray-400" />
+                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-gray-500" />
                 <div>
                   <p className="font-medium text-gray-800">{enquiry.email}</p>
-                  <p className="text-xs text-gray-400">Email</p>
+                  <p className="text-xs text-gray-500">Email</p>
                 </div>
               </div>
               {enquiry.phone && (
                 <div className="flex items-start gap-3 text-sm">
-                  <Phone className="mt-0.5 h-4 w-4 shrink-0 text-gray-400" />
+                  <Phone className="mt-0.5 h-4 w-4 shrink-0 text-gray-500" />
                   <div>
                     <p className="font-medium text-gray-800">{enquiry.phone}</p>
-                    <p className="text-xs text-gray-400">Phone</p>
+                    <p className="text-xs text-gray-500">Phone</p>
                   </div>
                 </div>
               )}
               {enquiry.service && (
                 <div className="flex items-start gap-3 text-sm">
-                  <Tag className="mt-0.5 h-4 w-4 shrink-0 text-gray-400" />
+                  <Tag className="mt-0.5 h-4 w-4 shrink-0 text-gray-500" />
                   <div>
                     <p className="font-medium text-gray-800">
                       {enquiry.service}
                     </p>
-                    <p className="text-xs text-gray-400">Service</p>
+                    <p className="text-xs text-gray-500">Service</p>
                   </div>
                 </div>
               )}
               {enquiry.budget && (
                 <div className="flex items-start gap-3 text-sm">
-                  <Tag className="mt-0.5 h-4 w-4 shrink-0 text-gray-400" />
+                  <Tag className="mt-0.5 h-4 w-4 shrink-0 text-gray-500" />
                   <div>
                     <p className="font-medium text-gray-800">
                       {enquiry.budget}
                     </p>
-                    <p className="text-xs text-gray-400">Budget</p>
+                    <p className="text-xs text-gray-500">Budget</p>
                   </div>
                 </div>
               )}
               <div className="flex items-start gap-3 text-sm">
-                <Calendar className="mt-0.5 h-4 w-4 shrink-0 text-gray-400" />
+                <Calendar className="mt-0.5 h-4 w-4 shrink-0 text-gray-500" />
                 <div>
                   <p className="font-medium text-gray-800">
                     {formatDate(enquiry.createdAt)}
                   </p>
-                  <p className="text-xs text-gray-400">Submitted</p>
+                  <p className="text-xs text-gray-500">Submitted</p>
                 </div>
               </div>
             </div>

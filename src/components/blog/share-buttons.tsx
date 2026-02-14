@@ -26,14 +26,14 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
 
   return (
     <div className="flex items-center gap-3">
-      <span className="text-xs font-semibold uppercase tracking-wide text-gray-400">
+      <span className="text-xs font-semibold uppercase tracking-wide text-gray-500">
         Share
       </span>
       <a
         href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-400 transition-all hover:border-gold hover:text-gold"
+        className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-500 transition-all hover:border-gold hover:text-gold"
         aria-label="Share on Facebook"
       >
         <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -44,7 +44,7 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
         href={`https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-400 transition-all hover:border-gold hover:text-gold"
+        className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-500 transition-all hover:border-gold hover:text-gold"
         aria-label="Share on X"
       >
         <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -55,7 +55,7 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
         href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-400 transition-all hover:border-gold hover:text-gold"
+        className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-500 transition-all hover:border-gold hover:text-gold"
         aria-label="Share on LinkedIn"
       >
         <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -64,7 +64,7 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
       </a>
       <button
         onClick={copyLink}
-        className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-400 transition-all hover:border-gold hover:text-gold"
+        className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-500 transition-all hover:border-gold hover:text-gold"
         aria-label="Copy link"
       >
         {copied ? (

@@ -121,30 +121,30 @@ export default async function LocationPage({ params }: LocationPageProps) {
       />
 
       {/* Hero */}
-      <section className="gradient-hero relative overflow-hidden py-20 lg:py-28">
+      <section className="gradient-hero relative overflow-hidden pt-32 pb-16 lg:pt-40 lg:pb-24">
         <div className="pointer-events-none absolute -top-[40%] -right-[20%] h-[500px] w-[500px] rounded-full bg-gold/[0.04]" />
         <div className="mx-auto max-w-[1200px] px-6 text-center lg:px-8">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/5 px-4 py-1.5 text-xs font-semibold text-gold">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.15em] text-gold-lighter">
             <MapPin className="h-3.5 w-3.5" />
             {loc.city}, {loc.stateShort}
           </div>
-          <h1 className="font-heading text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl">
+          <h1 className="font-heading text-3xl font-bold text-white md:text-4xl lg:text-5xl">
             {loc.heroTitle}
           </h1>
-          <p className="mx-auto mt-4 max-w-[600px] text-base text-gray-500 lg:text-lg">
+          <p className="mx-auto mt-4 max-w-[600px] text-base text-white/70 lg:text-lg">
             {loc.heroSubtitle}
           </p>
           <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link
               href="/contact"
-              className="gradient-gold inline-flex items-center gap-2 rounded-lg px-7 py-3.5 text-sm font-semibold text-white shadow-[--shadow-gold] transition-all hover:-translate-y-0.5"
+              className="gradient-gold inline-flex items-center gap-2 rounded-lg px-7 py-3.5 text-sm font-bold text-white shadow-[--shadow-gold] transition-all hover:-translate-y-0.5 hover:shadow-lg"
             >
               Book a Free Consultation
               <ArrowRight className="h-4 w-4" />
             </Link>
             <a
               href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}
-              className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-7 py-3.5 text-sm font-semibold text-gray-700 transition-all hover:-translate-y-0.5 hover:border-gold hover:text-gold"
+              className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-gold hover:bg-gold/10 hover:text-gold-lighter"
             >
               <Phone className="h-4 w-4" />
               {siteConfig.phone}

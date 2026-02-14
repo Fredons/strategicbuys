@@ -241,7 +241,7 @@ export function BlogForm({ post, categories }: BlogFormProps) {
               className="w-full rounded-lg border-[1.5px] border-gray-200 bg-white px-3 py-2 text-sm text-gray-800 focus:border-gold focus:outline-none"
               placeholder="Tag 1, Tag 2, Tag 3"
             />
-            <p className="mt-1 text-xs text-gray-400">
+            <p className="mt-1 text-xs text-gray-500">
               Separate tags with commas
             </p>
           </div>
@@ -258,7 +258,7 @@ export function BlogForm({ post, categories }: BlogFormProps) {
               className="w-full rounded-lg border-[1.5px] border-gray-200 bg-white px-3 py-2 text-sm text-gray-800 focus:border-gold focus:outline-none"
               placeholder="/images/blog/post-image.jpg"
             />
-            <p className="mt-1 text-xs text-gray-400">
+            <p className="mt-1 text-xs text-gray-500">
               Enter image URL or path
             </p>
           </div>

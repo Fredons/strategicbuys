@@ -85,7 +85,7 @@ export default async function AdminEnquiriesPage() {
                         enquiry.status.slice(1).toLowerCase()}
                     </span>
                   </td>
-                  <td className="px-5 py-3 text-sm text-gray-400">
+                  <td className="px-5 py-3 text-sm text-gray-500">
                     {formatDate(enquiry.createdAt)}
                   </td>
                 </tr>
@@ -94,7 +94,7 @@ export default async function AdminEnquiriesPage() {
               <tr>
                 <td
                   colSpan={5}
-                  className="px-5 py-12 text-center text-sm text-gray-400"
+                  className="px-5 py-12 text-center text-sm text-gray-500"
                 >
                   No enquiries yet. They will appear here when submitted via the
                   contact form.

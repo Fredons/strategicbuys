@@ -121,7 +121,7 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/5 py-5 text-xs text-gray-600 sm:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/5 py-5 text-xs text-gray-500 sm:flex-row">
           <p>
             &copy; {new Date().getFullYear()} Strategic Buys. All rights
             reserved. ABN: {siteConfig.abn}

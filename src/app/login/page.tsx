@@ -113,7 +113,7 @@ export default function LoginPage() {
           </form>
         </div>
 
-        <p className="mt-6 text-center text-xs text-gray-400">
+        <p className="mt-6 text-center text-xs text-gray-500">
           &copy; {new Date().getFullYear()} {siteConfig.name}. All rights
           reserved.
         </p>

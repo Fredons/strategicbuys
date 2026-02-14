@@ -49,7 +49,7 @@ export function BlogCard({
       </Link>
 
       <div className="p-5">
-        <div className="mb-2 flex items-center gap-3 text-xs text-gray-400">
+        <div className="mb-2 flex items-center gap-3 text-xs text-gray-500">
           {publishedAt && <time>{formatDate(publishedAt)}</time>}
           <span>{getReadTime(content)} min read</span>
         </div>
@@ -68,7 +68,7 @@ export function BlogCard({
 
         <div className="flex items-center justify-between">
           {author?.name && (
-            <span className="text-xs font-medium text-gray-400">
+            <span className="text-xs font-medium text-gray-500">
               By {author.name}
             </span>
           )}

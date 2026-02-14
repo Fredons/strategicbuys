@@ -70,14 +70,14 @@ export default function ContactPage() {
                   <Phone className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
                   <div>
                     <div className="font-semibold text-gray-800">{siteConfig.phone}</div>
-                    <div className="text-gray-400">Available 7 days a week</div>
+                    <div className="text-gray-500">Available 7 days a week</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3 text-sm text-gray-600">
                   <Mail className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
                   <div>
                     <div className="font-semibold text-gray-800">{siteConfig.email}</div>
-                    <div className="text-gray-400">We respond within 24 hours</div>
+                    <div className="text-gray-500">We respond within 24 hours</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3 text-sm text-gray-600">
@@ -105,7 +105,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <div className="text-sm font-semibold text-gray-800">{item.title}</div>
-                      <div className="text-xs text-gray-400">{item.desc}</div>
+                      <div className="text-xs text-gray-500">{item.desc}</div>
                     </div>
                   </div>
                 ))}

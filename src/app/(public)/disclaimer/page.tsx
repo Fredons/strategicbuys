@@ -31,7 +31,7 @@ export default function DisclaimerPage() {
 
       <section className="py-14 lg:py-20">
         <div className="prose prose-gray mx-auto max-w-[800px] px-6 prose-headings:font-heading prose-headings:font-bold lg:px-8">
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-gray-500">
             Last updated: February 2025
           </p>
 

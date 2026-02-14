@@ -18,16 +18,17 @@ export function CTABanner({
       <div className="gradient-cta relative mx-auto max-w-[1200px] overflow-hidden rounded-2xl px-8 py-14 text-center lg:px-12 lg:py-16">
         {/* Decorative orb */}
         <div className="pointer-events-none absolute -top-[40%] -right-[15%] h-[350px] w-[350px] rounded-full bg-gold/[0.06]" />
+        <div className="pointer-events-none absolute -bottom-[30%] -left-[10%] h-[250px] w-[250px] rounded-full bg-white/[0.03]" />
 
         <h2 className="relative font-heading text-2xl font-bold text-white md:text-3xl lg:text-4xl">
           {title}
         </h2>
-        <p className="relative mx-auto mt-3 mb-6 max-w-[480px] text-base text-white/80">
+        <p className="relative mx-auto mt-3 mb-8 max-w-[480px] text-base leading-relaxed text-white/75">
           {subtitle}
         </p>
         <Link
           href={buttonHref}
-          className="relative inline-flex items-center gap-2 rounded-lg bg-white px-7 py-3 text-sm font-bold text-purple-dark transition-all hover:-translate-y-0.5 hover:shadow-lg"
+          className="relative inline-flex items-center gap-2 rounded-lg bg-white px-8 py-3.5 text-sm font-bold text-gray-900 shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-xl"
         >
           {buttonText}
         </Link>

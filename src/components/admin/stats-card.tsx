@@ -12,7 +12,7 @@ export function StatsCard({ title, value, icon: Icon, trend }: StatsCardProps) {
     <div className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm">
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-xs font-medium uppercase tracking-wide text-gray-400">
+          <p className="text-xs font-medium uppercase tracking-wide text-gray-500">
             {title}
           </p>
           <p className="mt-1 text-2xl font-bold text-gray-900">{value}</p>

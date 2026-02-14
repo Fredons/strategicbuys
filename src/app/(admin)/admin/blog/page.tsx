@@ -91,14 +91,14 @@ export default async function AdminBlogListPage() {
                         post.status.slice(1).toLowerCase()}
                     </span>
                   </td>
-                  <td className="px-5 py-3 text-sm text-gray-400">
+                  <td className="px-5 py-3 text-sm text-gray-500">
                     {formatDate(post.publishedAt || post.createdAt)}
                   </td>
                   <td className="px-5 py-3 text-right">
                     <div className="flex items-center justify-end gap-2">
                       <Link
                         href={`/admin/blog/${post.id}`}
-                        className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
+                        className="rounded-lg p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-600"
                       >
                         <Pencil className="h-4 w-4" />
                       </Link>
@@ -106,7 +106,7 @@ export default async function AdminBlogListPage() {
                         <input type="hidden" name="_method" value="DELETE" />
                         <button
                           type="submit"
-                          className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-red-50 hover:text-red-500"
+                          className="rounded-lg p-2 text-gray-500 transition-colors hover:bg-red-50 hover:text-red-500"
                         >
                           <Trash2 className="h-4 w-4" />
                         </button>
@@ -117,7 +117,7 @@ export default async function AdminBlogListPage() {
               ))
             ) : (
               <tr>
-                <td colSpan={5} className="px-5 py-12 text-center text-sm text-gray-400">
+                <td colSpan={5} className="px-5 py-12 text-center text-sm text-gray-500">
                   No blog posts yet.{" "}
                   <Link
                     href="/admin/blog/new"

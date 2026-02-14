@@ -135,7 +135,7 @@ export default async function AdminDashboardPage() {
                     <p className="truncate text-sm font-medium text-gray-800">
                       {post.title}
                     </p>
-                    <p className="text-xs text-gray-400">
+                    <p className="text-xs text-gray-500">
                       {formatDate(post.publishedAt || post.createdAt)}
                     </p>
                   </div>
@@ -153,7 +153,7 @@ export default async function AdminDashboardPage() {
                 </Link>
               ))
             ) : (
-              <div className="px-5 py-8 text-center text-sm text-gray-400">
+              <div className="px-5 py-8 text-center text-sm text-gray-500">
                 No posts yet
               </div>
             )}
@@ -185,7 +185,7 @@ export default async function AdminDashboardPage() {
                     <p className="truncate text-sm font-medium text-gray-800">
                       {enquiry.name}
                     </p>
-                    <p className="truncate text-xs text-gray-400">
+                    <p className="truncate text-xs text-gray-500">
                       {enquiry.service || enquiry.email}
                     </p>
                   </div>
@@ -206,7 +206,7 @@ export default async function AdminDashboardPage() {
                 </Link>
               ))
             ) : (
-              <div className="px-5 py-8 text-center text-sm text-gray-400">
+              <div className="px-5 py-8 text-center text-sm text-gray-500">
                 No enquiries yet
               </div>
             )}
