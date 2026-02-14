@@ -53,7 +53,7 @@ export default function AboutPage() {
           <div className="overflow-hidden rounded-2xl shadow-lg ring-4 ring-gold/10 ring-offset-4 ring-offset-white">
             <Image
               src="/images/about-story.jpg"
-              alt="Strategic Buys property strategy meeting"
+              alt="Australian home with covered deck and outdoor dining area"
               width={600}
               height={450}
               className="h-auto w-full object-cover"
@@ -166,8 +166,8 @@ export default function AboutPage() {
           </div>
           <div className="overflow-hidden rounded-2xl shadow-lg ring-4 ring-gold/10 ring-offset-4 ring-offset-white">
             <Image
-              src="/images/why-us.jpg"
-              alt="Modern Australian property"
+              src="/images/why-us.webp"
+              alt="Classic Australian weatherboard home with green lawn"
               width={600}
               height={450}
               className="h-auto w-full object-cover"

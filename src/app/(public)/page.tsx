@@ -71,7 +71,7 @@ export default async function HomePage() {
       <section className="relative flex min-h-dvh items-center overflow-hidden pt-20">
         <Image
           src="/images/hero-home.jpg"
-          alt="Australian property"
+          alt="Classic Australian brick suburban home with green lawn and carport"
           fill
           className="object-cover"
           priority
@@ -169,8 +169,8 @@ export default async function HomePage() {
         <div className="mx-auto grid max-w-[1200px] items-center gap-10 px-6 md:grid-cols-2 lg:gap-16 lg:px-8">
           <div className="relative overflow-hidden rounded-2xl shadow-lg ring-4 ring-gold/10 ring-offset-4 ring-offset-white">
             <Image
-              src="/images/about-preview.jpg"
-              alt="Strategic Buys team discussing property strategy"
+              src="/images/about-preview.webp"
+              alt="Styled living room in an Australian investment property"
               width={600}
               height={450}
               className="h-auto w-full object-cover"

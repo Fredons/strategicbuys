@@ -162,7 +162,7 @@ export default function ServicesPage() {
             <div className="overflow-hidden rounded-2xl shadow-lg">
               <Image
                 src="/images/service-homebuyer.jpg"
-                alt="Happy couple receiving keys to their new home"
+                alt="Modern styled bedroom in an Australian home"
                 width={600}
                 height={380}
                 className="h-auto w-full object-cover"
@@ -210,8 +210,8 @@ export default function ServicesPage() {
             </div>
             <div className="order-1 overflow-hidden rounded-2xl shadow-lg md:order-2">
               <Image
-                src="/images/service-investor.jpg"
-                alt="Modern investment property"
+                src="/images/service-investor.webp"
+                alt="Suburban brick investment property in Australia"
                 width={600}
                 height={380}
                 className="h-auto w-full object-cover"
