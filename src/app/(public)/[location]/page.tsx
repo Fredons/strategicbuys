@@ -160,7 +160,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
             <h2 className="font-heading text-2xl font-bold text-gray-900 md:text-3xl">
               Why Choose a Buyer&apos;s Agent in {loc.city}?
             </h2>
-            <p className="mt-3 text-sm text-gray-500">
+            <p className="mt-3 text-sm text-gray-600">
               Buying property in {loc.city} is competitive. A dedicated
               buyer&apos;s agent gives you an unfair advantage.
             </p>
@@ -178,7 +178,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
                 <h3 className="mb-2 font-heading text-base font-bold text-gray-900">
                   {item.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-gray-500">
+                <p className="text-sm leading-relaxed text-gray-600">
                   {item.description}
                 </p>
               </div>
@@ -194,7 +194,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
             <h2 className="font-heading text-2xl font-bold text-gray-900 md:text-3xl">
               Our Services in {loc.city}
             </h2>
-            <p className="mt-3 text-sm text-gray-500">
+            <p className="mt-3 text-sm text-gray-600">
               Whether you&apos;re a first-home buyer, upgrader, or investor, we
               have a service tailored for you.
             </p>
@@ -218,7 +218,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
                 <h3 className="font-heading text-lg font-bold text-gray-900">
                   {pkg.name}
                 </h3>
-                <p className="mt-2 text-sm text-gray-500">{pkg.description}</p>
+                <p className="mt-2 text-sm text-gray-600">{pkg.description}</p>
                 <ul className="mt-5 space-y-2.5">
                   {pkg.features.map((feature) => (
                     <li
@@ -253,7 +253,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
             <h2 className="font-heading text-2xl font-bold text-gray-900 md:text-3xl">
               How It Works
             </h2>
-            <p className="mt-3 text-sm text-gray-500">
+            <p className="mt-3 text-sm text-gray-600">
               Our proven 4-step process makes buying property in {loc.city}{" "}
               simple and stress-free.
             </p>
@@ -268,7 +268,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
                 <h3 className="mb-2 font-heading text-base font-bold text-gray-900">
                   {step.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-gray-500">
+                <p className="text-sm leading-relaxed text-gray-600">
                   {step.description}
                 </p>
               </div>

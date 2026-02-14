@@ -136,7 +136,7 @@ async function BlogContent({ searchParams }: BlogPageProps) {
               <h3 className="font-heading text-xl font-bold text-gray-900">
                 No posts yet
               </h3>
-              <p className="mt-2 text-sm text-gray-500">
+              <p className="mt-2 text-sm text-gray-600">
                 Check back soon for property insights and market updates.
               </p>
             </div>
@@ -150,7 +150,7 @@ async function BlogContent({ searchParams }: BlogPageProps) {
           <h2 className="font-heading text-2xl font-bold text-gray-900">
             Stay Informed
           </h2>
-          <p className="mt-2 text-sm text-gray-500">
+          <p className="mt-2 text-sm text-gray-600">
             Get the latest property insights and market updates delivered to your
             inbox.
           </p>

@@ -23,7 +23,7 @@ export function CTABanner({
         <h2 className="relative font-heading text-2xl font-bold text-white md:text-3xl lg:text-4xl">
           {title}
         </h2>
-        <p className="relative mx-auto mt-3 mb-8 max-w-[480px] text-base leading-relaxed text-white/75">
+        <p className="relative mx-auto mt-3 mb-8 max-w-[480px] text-base leading-relaxed text-white/90">
           {subtitle}
         </p>
         <Link

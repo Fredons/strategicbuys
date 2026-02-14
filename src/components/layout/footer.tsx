@@ -23,7 +23,7 @@ export function Footer() {
               height={44}
               className="mb-3 h-12 w-auto brightness-125"
             />
-            <p className="mt-2 text-sm leading-relaxed text-gray-500">
+            <p className="mt-2 text-sm leading-relaxed text-gray-400">
               Strategic Buys is a licensed, independent buyer&apos;s agency
               helping Australians purchase high-growth residential and commercial
               properties. We work exclusively for buyers &mdash; never sellers.
@@ -35,7 +35,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.04] text-gray-500 transition-all hover:-translate-y-0.5 hover:bg-gold hover:text-white"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.04] text-gray-400 transition-all hover:-translate-y-0.5 hover:bg-gold hover:text-white"
               >
                 <Facebook className="h-4 w-4" />
               </a>
@@ -44,7 +44,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.04] text-gray-500 transition-all hover:-translate-y-0.5 hover:bg-gold hover:text-white"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.04] text-gray-400 transition-all hover:-translate-y-0.5 hover:bg-gold hover:text-white"
               >
                 <Instagram className="h-4 w-4" />
               </a>
@@ -53,7 +53,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.04] text-gray-500 transition-all hover:-translate-y-0.5 hover:bg-gold hover:text-white"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.04] text-gray-400 transition-all hover:-translate-y-0.5 hover:bg-gold hover:text-white"
               >
                 <Linkedin className="h-4 w-4" />
               </a>
@@ -70,7 +70,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-gray-500 transition-all hover:pl-1 hover:text-gold-light"
+                    className="text-sm text-gray-400 transition-all hover:pl-1 hover:text-gold-light"
                   >
                     {link.label}
                   </Link>
@@ -89,7 +89,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-gray-500 transition-all hover:pl-1 hover:text-gold-light"
+                    className="text-sm text-gray-400 transition-all hover:pl-1 hover:text-gold-light"
                   >
                     {link.label}
                   </Link>
@@ -104,15 +104,15 @@ export function Footer() {
               Get in Touch
             </h4>
             <div className="space-y-3">
-              <div className="flex items-start gap-2 text-sm text-gray-500">
+              <div className="flex items-start gap-2 text-sm text-gray-400">
                 <Mail className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
                 <span>{siteConfig.email}</span>
               </div>
-              <div className="flex items-start gap-2 text-sm text-gray-500">
+              <div className="flex items-start gap-2 text-sm text-gray-400">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
                 <span>{siteConfig.phone}</span>
               </div>
-              <div className="flex items-start gap-2 text-sm text-gray-500">
+              <div className="flex items-start gap-2 text-sm text-gray-400">
                 <Clock className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
                 <span>{siteConfig.hours}</span>
               </div>
@@ -121,7 +121,7 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/5 py-5 text-xs text-gray-500 sm:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/5 py-5 text-xs text-gray-400 sm:flex-row">
           <p>
             &copy; {new Date().getFullYear()} Strategic Buys. All rights
             reserved. ABN: {siteConfig.abn}
@@ -131,7 +131,7 @@ export function Footer() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-gray-500 transition-colors hover:text-gold-light"
+                className="text-gray-400 transition-colors hover:text-gold-light"
               >
                 {link.label}
               </Link>

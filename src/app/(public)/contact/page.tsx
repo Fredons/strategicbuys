@@ -53,7 +53,7 @@ export default function ContactPage() {
             <h2 className="font-heading text-2xl font-bold text-gray-900">
               Send Us a Message
             </h2>
-            <p className="mt-1 mb-6 text-sm text-gray-500">
+            <p className="mt-1 mb-6 text-sm text-gray-600">
               Fill out the form below and we&apos;ll get back to you within 24 hours.
             </p>
             <ContactForm />

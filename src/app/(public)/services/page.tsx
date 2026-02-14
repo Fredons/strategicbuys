@@ -90,7 +90,7 @@ export default function ServicesPage() {
                 <h3 className="font-heading text-base font-bold text-gray-900">
                   {vp.title}
                 </h3>
-                <p className="mt-1 text-sm text-gray-500">{vp.description}</p>
+                <p className="mt-1 text-sm text-gray-600">{vp.description}</p>
               </div>
             );
           })}
@@ -108,7 +108,7 @@ export default function ServicesPage() {
             <h2 className="font-heading text-3xl font-bold text-gray-900 lg:text-4xl">
               Choose Your Service
             </h2>
-            <p className="mx-auto mt-3 max-w-[600px] text-gray-500">
+            <p className="mx-auto mt-3 max-w-[600px] text-gray-600">
               Whether you need end-to-end support or help at a specific stage,
               we have a package that fits.
             </p>
@@ -132,7 +132,7 @@ export default function ServicesPage() {
                 <h3 className="font-heading text-xl font-bold text-gray-900">
                   {pkg.name}
                 </h3>
-                <p className="mt-2 text-sm text-gray-500">{pkg.description}</p>
+                <p className="mt-2 text-sm text-gray-600">{pkg.description}</p>
                 <ul className="mt-6 mb-6 space-y-2 text-left">
                   {pkg.features.map((f) => (
                     <li key={f} className="flex items-center gap-2 text-sm text-gray-600">
@@ -234,7 +234,7 @@ export default function ServicesPage() {
                   <Icon className="h-6 w-6" />
                 </div>
                 <h4 className="font-heading text-lg font-bold text-gray-900">{title}</h4>
-                <p className="mt-2 text-sm text-gray-500">{desc}</p>
+                <p className="mt-2 text-sm text-gray-600">{desc}</p>
               </div>
             ))}
           </div>
@@ -261,7 +261,7 @@ export default function ServicesPage() {
                 </div>
                 <div>
                   <h4 className="font-heading text-lg font-bold text-white">{step.title}</h4>
-                  <p className="mt-1 text-sm leading-relaxed text-white/60">{step.description}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-white/80">{step.description}</p>
                 </div>
               </div>
             ))}

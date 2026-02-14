@@ -40,7 +40,7 @@ export function ContactForm() {
       <div className="rounded-xl border border-success/20 bg-success/5 p-8 text-center">
         <CheckCircle className="mx-auto mb-3 h-10 w-10 text-success" />
         <h3 className="font-heading text-xl font-bold text-gray-900">Message Sent!</h3>
-        <p className="mt-2 text-sm text-gray-500">
+        <p className="mt-2 text-sm text-gray-600">
           Thank you for getting in touch. We&apos;ll be in contact within 24 hours.
         </p>
         <button

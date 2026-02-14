@@ -135,7 +135,7 @@ export default function AboutPage() {
                 <h3 className="font-heading text-base font-bold text-gray-900">
                   {title}
                 </h3>
-                <p className="mt-2 text-sm text-gray-500">{desc}</p>
+                <p className="mt-2 text-sm text-gray-600">{desc}</p>
               </div>
             ))}
           </div>

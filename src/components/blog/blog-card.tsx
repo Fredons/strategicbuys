@@ -61,7 +61,7 @@ export function BlogCard({
         </Link>
 
         {excerpt && (
-          <p className="mb-3 line-clamp-2 text-sm leading-relaxed text-gray-500">
+          <p className="mb-3 line-clamp-2 text-sm leading-relaxed text-gray-600">
             {excerpt}
           </p>
         )}

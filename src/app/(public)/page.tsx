@@ -84,8 +84,8 @@ export default async function HomePage() {
           priority
         />
         {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 via-gray-900/75 to-gray-900/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-gray-900/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/85 to-gray-900/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-gray-900/50" />
 
         {/* Decorative gold accent */}
         <div className="animate-pulse-glow pointer-events-none absolute top-[15%] right-[10%] h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(198,150,44,0.08)_0%,transparent_65%)]" />
@@ -103,7 +103,7 @@ export default async function HomePage() {
               <span className="text-gradient-gold">Love Your Property.</span>
             </h1>
 
-            <p className="mt-6 max-w-[500px] text-base leading-relaxed text-white/80 md:text-lg">
+            <p className="mt-6 max-w-[500px] text-base leading-relaxed text-white/90 md:text-lg">
               Australia&apos;s trusted buyer&apos;s agents. We find, negotiate, and
               secure properties exclusively for you &mdash; saving you time, money,
               and the stress of doing it alone.
@@ -136,7 +136,7 @@ export default async function HomePage() {
                   <div className="font-heading text-2xl font-bold text-gold-light lg:text-3xl">
                     {stat.value}
                   </div>
-                  <div className="mt-1 text-xs font-medium uppercase tracking-[0.15em] text-white/50">
+                  <div className="mt-1 text-xs font-medium uppercase tracking-[0.15em] text-white/70">
                     {stat.label}
                   </div>
                 </div>
@@ -155,7 +155,7 @@ export default async function HomePage() {
             { icon: CheckCircle, text: "500+ Satisfied Clients" },
             { icon: Search, text: "Off-Market Access" },
           ].map(({ icon: Icon, text }) => (
-            <div key={text} className="flex items-center gap-1.5 text-xs font-medium text-gray-500">
+            <div key={text} className="flex items-center gap-1.5 text-xs font-semibold text-gray-600">
               <Icon className="h-[18px] w-[18px] text-gold" />
               {text}
             </div>
@@ -216,7 +216,7 @@ export default async function HomePage() {
             <h2 className="font-heading text-3xl font-bold text-gray-900 lg:text-4xl">
               Expert Services for Every Buyer
             </h2>
-            <p className="mx-auto mt-3 max-w-[600px] text-gray-500">
+            <p className="mx-auto mt-3 max-w-[600px] text-gray-600">
               From first-home buyers to seasoned investors, we provide tailored
               property buying services that save you time, money, and stress.
             </p>
@@ -250,7 +250,7 @@ export default async function HomePage() {
                 <h3 className="font-heading text-lg font-bold text-gray-900">
                   {title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-gray-500">
+                <p className="mt-2 text-sm leading-relaxed text-gray-600">
                   {desc}
                 </p>
                 <Link
@@ -295,7 +295,7 @@ export default async function HomePage() {
                 <h3 className="font-heading text-base font-bold text-gray-900">
                   {title}
                 </h3>
-                <p className="mt-1 text-sm text-gray-500">{desc}</p>
+                <p className="mt-1 text-sm text-gray-600">{desc}</p>
               </div>
             ))}
           </div>
@@ -313,7 +313,7 @@ export default async function HomePage() {
             <h2 className="font-heading text-3xl font-bold text-white lg:text-4xl">
               How It Works
             </h2>
-            <p className="mx-auto mt-3 max-w-[600px] text-white/60">
+            <p className="mx-auto mt-3 max-w-[600px] text-white/80">
               A simple, proven process from first call to settlement &mdash; and beyond.
             </p>
           </div>
@@ -328,7 +328,7 @@ export default async function HomePage() {
                   <h4 className="font-heading text-lg font-bold text-white">
                     {step.title}
                   </h4>
-                  <p className="mt-1 text-sm leading-relaxed text-white/60">
+                  <p className="mt-1 text-sm leading-relaxed text-white/80">
                     {step.description}
                   </p>
                 </div>
@@ -385,7 +385,7 @@ export default async function HomePage() {
                     <Star key={i} className="h-4 w-4 fill-current" />
                   ))}
                 </div>
-                <blockquote className="border-l-[3px] border-gold-light pl-4 font-accent text-base italic leading-relaxed text-gray-700">
+                <blockquote className="border-l-[3px] border-gold-light pl-4 font-accent text-base italic leading-relaxed text-gray-800">
                   {t.quote}
                 </blockquote>
                 <div className="mt-5 flex items-center gap-3">
@@ -432,7 +432,7 @@ export default async function HomePage() {
                 <h3 className="font-heading text-base font-bold text-gray-900">
                   {title}
                 </h3>
-                <p className="mt-1 text-sm text-gray-500">{desc}</p>
+                <p className="mt-1 text-sm text-gray-600">{desc}</p>
               </div>
             ))}
           </div>
@@ -485,7 +485,7 @@ export default async function HomePage() {
                         {post.title}
                       </Link>
                     </h3>
-                    <p className="mt-2 line-clamp-2 text-sm text-gray-500">
+                    <p className="mt-2 line-clamp-2 text-sm text-gray-600">
                       {post.excerpt}
                     </p>
                     <div className="mt-4 flex items-center justify-between text-xs text-gray-500">
