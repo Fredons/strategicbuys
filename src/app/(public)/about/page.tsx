@@ -90,7 +90,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-[800px] px-6 text-center lg:px-8">
           <SectionHeader label="Our Mission" title="" theme="dark" />
           <div className="relative mt-4">
-            <span className="absolute -top-6 left-1/2 -translate-x-1/2 font-accent text-8xl leading-none text-gold/10">
+            <span className="absolute -top-6 left-1/2 -translate-x-1/2 font-accent text-8xl leading-none text-gold/15">
               &ldquo;
             </span>
             <blockquote className="relative font-accent text-xl italic leading-relaxed text-white/90 lg:text-2xl">

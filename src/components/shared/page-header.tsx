@@ -17,7 +17,7 @@ export function PageHeader({ title, subtitle, breadcrumbs }: PageHeaderProps) {
     <section className="gradient-page-header relative overflow-hidden pt-28 pb-12 text-center lg:pt-36 lg:pb-16">
       {/* Decorative elements */}
       <div className="pointer-events-none absolute -top-1/4 -right-[8%] h-[400px] w-[400px] rounded-full bg-gold/[0.05]" />
-      <div className="pointer-events-none absolute -bottom-1/3 -left-[10%] h-[300px] w-[300px] rounded-full bg-purple-light/[0.06]" />
+      <div className="pointer-events-none absolute -bottom-1/3 -left-[10%] h-[300px] w-[300px] rounded-full bg-gold/[0.03]" />
 
       <div className="relative mx-auto max-w-[1200px] px-6 lg:px-8">
         {/* Breadcrumbs */}

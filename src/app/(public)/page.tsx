@@ -273,7 +273,7 @@ export default async function HomePage() {
             <div className="grid gap-8 lg:grid-cols-4 lg:gap-6">
               {processSteps.map((step) => (
                 <div key={step.number} className="relative text-center">
-                  <div className="relative z-10 mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full gradient-gold text-lg font-bold text-white shadow-[--shadow-gold] ring-4 ring-[#2a1f3d]">
+                  <div className="relative z-10 mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full gradient-gold text-lg font-bold text-white shadow-[--shadow-gold] ring-4 ring-[#2c2720]">
                     {step.number}
                   </div>
                   <h4 className="font-heading text-base font-bold text-white lg:text-lg">

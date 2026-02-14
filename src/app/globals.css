@@ -168,15 +168,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .gradient-hero {
-  background: linear-gradient(160deg, #1a1816 0%, #2a1f3d 30%, #3D1A5C 50%, #2a1f3d 70%, #1a1816 100%);
+  background: linear-gradient(160deg, #1c1a17 0%, #2c2720 30%, #362e24 50%, #2c2720 70%, #1c1a17 100%);
 }
 
 .gradient-cta {
-  background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 50%, var(--gold-dark) 100%);
+  background: linear-gradient(135deg, #2c2720 0%, #362e24 50%, #3e3529 100%);
 }
 
 .gradient-page-header {
-  background: linear-gradient(160deg, var(--gray-800) 0%, var(--purple-dark) 60%, #2a1f3d 100%);
+  background: linear-gradient(160deg, #1c1a17 0%, #2c2720 60%, #362e24 100%);
 }
 
 .gradient-section-alt {
