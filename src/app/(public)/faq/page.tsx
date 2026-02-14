@@ -51,9 +51,12 @@ export default function FaqPage() {
       />
 
       <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-[800px] px-6 lg:px-8">
-          {faqGroups.map((group) => (
-            <div key={group.title} className="mb-10">
+        <div className="mx-auto max-w-[860px] px-6 lg:px-8">
+          {faqGroups.map((group, idx) => (
+            <div
+              key={group.title}
+              className={`mb-10 ${idx % 2 === 1 ? "-mx-6 rounded-xl bg-off-white px-6 py-8 lg:-mx-8 lg:px-8" : ""}`}
+            >
               <h2 className="mb-4 font-heading text-xl font-bold text-gray-900">
                 {group.title}
               </h2>

@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { JsonLd } from "@/components/seo/json-ld";
 import { CTABanner } from "@/components/shared/cta-banner";
+import { SectionHeader } from "@/components/shared/section-header";
 import { siteConfig } from "@/lib/constants/site";
 import { locations, type LocationData } from "@/lib/constants/locations";
 import { processSteps, servicePackages } from "@/lib/constants/services";
@@ -156,31 +157,29 @@ export default async function LocationPage({ params }: LocationPageProps) {
       {/* Why Us */}
       <section className="py-16 lg:py-20">
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
-          <div className="mx-auto max-w-[600px] text-center">
-            <h2 className="font-heading text-2xl font-bold text-gray-900 md:text-3xl">
-              Why Choose a Buyer&apos;s Agent in {loc.city}?
-            </h2>
-            <p className="mt-3 text-sm text-gray-600">
-              Buying property in {loc.city} is competitive. A dedicated
-              buyer&apos;s agent gives you an unfair advantage.
-            </p>
-          </div>
+          <SectionHeader
+            label={loc.city}
+            title={`Why Choose a Buyer's Agent in ${loc.city}?`}
+            subtitle={`Buying property in ${loc.city} is competitive. A dedicated buyer's agent gives you an unfair advantage.`}
+          />
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-4 sm:grid-cols-2">
             {whyUs.map((item) => (
               <div
                 key={item.title}
-                className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
+                className="flex items-start gap-4 rounded-xl border border-gray-100 bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-md"
               >
-                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-gold/10">
-                  <item.icon className="h-5 w-5 text-gold" />
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-gold/10 to-purple/5">
+                  <item.icon className="h-6 w-6 text-gold" />
                 </div>
-                <h3 className="mb-2 font-heading text-base font-bold text-gray-900">
-                  {item.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-gray-600">
-                  {item.description}
-                </p>
+                <div>
+                  <h3 className="font-heading text-base font-bold text-gray-900">
+                    {item.title}
+                  </h3>
+                  <p className="mt-1 text-sm leading-relaxed text-gray-600">
+                    {item.description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
@@ -190,15 +189,11 @@ export default async function LocationPage({ params }: LocationPageProps) {
       {/* Services */}
       <section className="border-t border-gray-100 bg-gray-50 py-16 lg:py-20">
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
-          <div className="mx-auto max-w-[600px] text-center">
-            <h2 className="font-heading text-2xl font-bold text-gray-900 md:text-3xl">
-              Our Services in {loc.city}
-            </h2>
-            <p className="mt-3 text-sm text-gray-600">
-              Whether you&apos;re a first-home buyer, upgrader, or investor, we
-              have a service tailored for you.
-            </p>
-          </div>
+          <SectionHeader
+            label="Services"
+            title={`Our Services in ${loc.city}`}
+            subtitle="Whether you're a first-home buyer, upgrader, or investor, we have a service tailored for you."
+          />
 
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {servicePackages.map((pkg) => (
@@ -249,15 +244,11 @@ export default async function LocationPage({ params }: LocationPageProps) {
       {/* Process */}
       <section className="py-16 lg:py-20">
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
-          <div className="mx-auto max-w-[600px] text-center">
-            <h2 className="font-heading text-2xl font-bold text-gray-900 md:text-3xl">
-              How It Works
-            </h2>
-            <p className="mt-3 text-sm text-gray-600">
-              Our proven 4-step process makes buying property in {loc.city}{" "}
-              simple and stress-free.
-            </p>
-          </div>
+          <SectionHeader
+            label="Our Process"
+            title="How It Works"
+            subtitle={`Our proven 4-step process makes buying property in ${loc.city} simple and stress-free.`}
+          />
 
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {processSteps.map((step) => (
@@ -280,19 +271,26 @@ export default async function LocationPage({ params }: LocationPageProps) {
       {/* Other Locations */}
       <section className="border-t border-gray-100 bg-gray-50 py-16 lg:py-20">
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
-          <h2 className="mb-8 text-center font-heading text-2xl font-bold text-gray-900">
-            We Also Serve
-          </h2>
-          <div className="flex flex-wrap justify-center gap-3">
+          <SectionHeader label="Locations" title="We Also Serve" />
+
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
             {locations
               .filter((l) => l.slug !== loc.slug)
               .map((l) => (
                 <Link
                   key={l.slug}
                   href={`/${l.slug}`}
-                  className="rounded-full border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-600 transition-all hover:border-gold hover:text-gold"
+                  className="group flex items-center gap-3 rounded-xl border border-gray-200 bg-white px-4 py-3.5 transition-all hover:-translate-y-0.5 hover:border-gold hover:shadow-sm"
                 >
-                  {l.city}
+                  <MapPin className="h-4 w-4 shrink-0 text-gray-400 transition-colors group-hover:text-gold" />
+                  <div>
+                    <span className="block text-sm font-semibold text-gray-800 group-hover:text-gold">
+                      {l.city}
+                    </span>
+                    <span className="text-xs text-gray-500">
+                      {l.stateShort}
+                    </span>
+                  </div>
                 </Link>
               ))}
           </div>

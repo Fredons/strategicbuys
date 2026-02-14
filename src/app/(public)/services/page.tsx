@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { PageHeader } from "@/components/shared/page-header";
 import { CTABanner } from "@/components/shared/cta-banner";
+import { SectionHeader } from "@/components/shared/section-header";
 import { JsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/lib/constants/site";
 import { servicePackages, processSteps, valueProps } from "@/lib/constants/services";
@@ -79,40 +80,36 @@ export default function ServicesPage() {
 
       {/* ── Value Props ───────────────────────────────────── */}
       <section className="py-16 lg:py-20">
-        <div className="mx-auto grid max-w-[1200px] gap-6 px-6 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
-          {valueProps.map((vp) => {
-            const Icon = iconMap[vp.icon] || Search;
-            return (
-              <div key={vp.title} className="group p-6 text-center">
-                <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-gold/[0.08] to-purple/[0.04] text-gold transition-all group-hover:scale-110 group-hover:shadow-[--shadow-gold]">
-                  <Icon className="h-7 w-7" />
+        <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
+          <div className="grid gap-4 sm:grid-cols-2">
+            {valueProps.map((vp) => {
+              const Icon = iconMap[vp.icon] || Search;
+              return (
+                <div key={vp.title} className="flex items-start gap-4 rounded-xl border border-gray-100 bg-white p-6 transition-all hover:-translate-y-0.5 hover:shadow-md">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-gold/10 to-purple/5 text-gold">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-heading text-base font-bold text-gray-900">
+                      {vp.title}
+                    </h3>
+                    <p className="mt-1 text-sm text-gray-600">{vp.description}</p>
+                  </div>
                 </div>
-                <h3 className="font-heading text-base font-bold text-gray-900">
-                  {vp.title}
-                </h3>
-                <p className="mt-1 text-sm text-gray-600">{vp.description}</p>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </section>
 
       {/* ── Service Packages ──────────────────────────────── */}
       <section className="bg-cream py-16 lg:py-20">
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
-          <div className="text-center">
-            <div className="mb-2 flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-gold">
-              <span className="inline-block h-0.5 w-7 bg-gold" />
-              Our Packages
-            </div>
-            <h2 className="font-heading text-3xl font-bold text-gray-900 lg:text-4xl">
-              Choose Your Service
-            </h2>
-            <p className="mx-auto mt-3 max-w-[600px] text-gray-600">
-              Whether you need end-to-end support or help at a specific stage,
-              we have a package that fits.
-            </p>
-          </div>
+          <SectionHeader
+            label="Our Packages"
+            title="Choose Your Service"
+            subtitle="Whether you need end-to-end support or help at a specific stage, we have a package that fits."
+          />
 
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {servicePackages.map((pkg) => (
@@ -120,7 +117,7 @@ export default function ServicesPage() {
                 key={pkg.name}
                 className={`relative rounded-2xl border-2 bg-white p-8 text-center transition-all hover:-translate-y-1 hover:shadow-lg ${
                   pkg.featured
-                    ? "scale-[1.02] border-gold shadow-[--shadow-gold]"
+                    ? "relative z-10 lg:scale-105 border-gold shadow-[--shadow-gold] bg-gradient-to-b from-white to-gold/[0.02]"
                     : "border-gray-100"
                 }`}
               >
@@ -175,7 +172,7 @@ export default function ServicesPage() {
               <h3 className="font-heading text-2xl font-bold text-gray-900 lg:text-3xl">
                 Home Buyers
               </h3>
-              <p className="mt-3 leading-relaxed text-gray-600">
+              <p className="mt-3 border-l-[3px] border-gold pl-5 leading-relaxed text-gray-600">
                 Buying a home is one of the biggest decisions you&apos;ll ever
                 make. We take the stress out of the process and help you find
                 the perfect property at the right price.
@@ -197,7 +194,7 @@ export default function ServicesPage() {
               <h3 className="font-heading text-2xl font-bold text-gray-900 lg:text-3xl">
                 Property Investors
               </h3>
-              <p className="mt-3 leading-relaxed text-gray-600">
+              <p className="mt-3 border-l-[3px] border-gold pl-5 leading-relaxed text-gray-600">
                 Building wealth through property requires more than just picking
                 a suburb. We provide data-driven investment strategy tailored to
                 your financial goals.
@@ -223,18 +220,20 @@ export default function ServicesPage() {
           </div>
 
           {/* Additional types */}
-          <div className="mt-16 grid gap-6 md:grid-cols-3">
+          <div className="mt-16 grid gap-4 md:grid-cols-3">
             {[
               { icon: Hammer, title: "Home Builders", desc: "Expert land acquisition and development potential assessment for your dream build." },
               { icon: Building2, title: "Developers", desc: "Source development sites with strong feasibility and growth potential." },
               { icon: Heart, title: "NDIS Investors", desc: "Specialist Disability Accommodation investment guidance and property sourcing." },
             ].map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="rounded-xl border border-gray-100 bg-white p-6 text-center transition-all hover:-translate-y-1 hover:shadow-md">
-                <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-gold/[0.08] to-purple/[0.04] text-gold">
+              <div key={title} className="flex items-start gap-4 rounded-xl border border-gray-100 bg-white p-6 transition-all hover:-translate-y-0.5 hover:shadow-md">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-gold/10 to-purple/5 text-gold">
                   <Icon className="h-6 w-6" />
                 </div>
-                <h4 className="font-heading text-lg font-bold text-gray-900">{title}</h4>
-                <p className="mt-2 text-sm text-gray-600">{desc}</p>
+                <div>
+                  <h4 className="font-heading text-lg font-bold text-gray-900">{title}</h4>
+                  <p className="mt-1 text-sm text-gray-600">{desc}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -244,15 +243,7 @@ export default function ServicesPage() {
       {/* ── Process ───────────────────────────────────────── */}
       <section className="gradient-hero py-16 text-white lg:py-20">
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
-          <div className="text-center">
-            <div className="mb-2 flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-gold-light">
-              <span className="inline-block h-0.5 w-7 bg-gold-light" />
-              Our Process
-            </div>
-            <h2 className="font-heading text-3xl font-bold text-white lg:text-4xl">
-              How It Works
-            </h2>
-          </div>
+          <SectionHeader label="Our Process" title="How It Works" theme="dark" />
           <div className="mt-10 grid gap-8 md:grid-cols-2">
             {processSteps.map((step) => (
               <div key={step.number} className="flex items-start gap-5 rounded-xl bg-white/[0.04] p-5">

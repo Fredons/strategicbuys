@@ -11,6 +11,7 @@ interface BlogCardProps {
   category: { name: string; slug: string } | null;
   author: { name: string | null } | null;
   content: string;
+  featured?: boolean;
 }
 
 export function BlogCard({
@@ -22,11 +23,12 @@ export function BlogCard({
   category,
   author,
   content,
+  featured = false,
 }: BlogCardProps) {
   return (
     <article className="group overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md">
       <Link href={`/blog/${slug}`} className="block">
-        <div className="relative aspect-[16/10] overflow-hidden bg-gray-100">
+        <div className={`relative overflow-hidden bg-gray-100 ${featured ? "aspect-[16/9]" : "aspect-[16/10]"}`}>
           {featuredImage ? (
             <Image
               src={featuredImage}
@@ -48,14 +50,14 @@ export function BlogCard({
         </div>
       </Link>
 
-      <div className="p-5">
+      <div className={featured ? "p-6 lg:p-8" : "p-5"}>
         <div className="mb-2 flex items-center gap-3 text-xs text-gray-500">
           {publishedAt && <time>{formatDate(publishedAt)}</time>}
           <span>{getReadTime(content)} min read</span>
         </div>
 
         <Link href={`/blog/${slug}`}>
-          <h3 className="mb-2 font-heading text-lg font-bold text-gray-900 transition-colors group-hover:text-gold">
+          <h3 className={`mb-2 font-heading font-bold text-gray-900 transition-colors group-hover:text-gold ${featured ? "text-xl lg:text-2xl" : "text-lg"}`}>
             {title}
           </h3>
         </Link>

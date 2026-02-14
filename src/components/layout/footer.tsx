@@ -6,12 +6,31 @@ import {
   footerLegalLinks,
 } from "@/lib/constants/navigation";
 import { siteConfig } from "@/lib/constants/site";
-import { Mail, Phone, Clock, Facebook, Instagram, Linkedin } from "lucide-react";
+import { locations } from "@/lib/constants/locations";
+import { Mail, Phone, Clock, Facebook, Instagram, Linkedin, ShieldCheck } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-gray-900 pt-16 text-gray-400 lg:pt-20">
+    <footer className="bg-gray-900 pt-14 text-gray-400 lg:pt-16">
       <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
+        {/* Locations served */}
+        <div className="border-b border-white/5 pb-10 mb-10">
+          <p className="mb-3 text-xs font-bold uppercase tracking-widest text-white/40">
+            Serving All Major Cities
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {locations.map((loc) => (
+              <Link
+                key={loc.slug}
+                href={`/${loc.slug}`}
+                className="rounded-full border border-white/10 px-3 py-1 text-xs text-gray-400 transition-colors hover:border-gold hover:text-gold-light"
+              >
+                {loc.city}
+              </Link>
+            ))}
+          </div>
+        </div>
+
         {/* Grid */}
         <div className="grid gap-10 pb-12 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.5fr] lg:gap-8 lg:pb-16">
           {/* Brand */}
@@ -122,10 +141,16 @@ export function Footer() {
 
         {/* Bottom */}
         <div className="flex flex-col items-center justify-between gap-4 border-t border-white/5 py-5 text-xs text-gray-400 sm:flex-row">
-          <p>
-            &copy; {new Date().getFullYear()} Strategic Buys. All rights
-            reserved. ABN: {siteConfig.abn}
-          </p>
+          <div>
+            <p>
+              &copy; {new Date().getFullYear()} Strategic Buys. All rights
+              reserved. ABN: {siteConfig.abn}
+            </p>
+            <div className="mt-1.5 flex items-center gap-1.5 text-[11px] text-gray-500">
+              <ShieldCheck className="h-3.5 w-3.5 text-gold/60" />
+              Licensed Buyer&apos;s Agents | Independent &amp; Client-Focused
+            </div>
+          </div>
           <div className="flex gap-4">
             {footerLegalLinks.map((link) => (
               <Link

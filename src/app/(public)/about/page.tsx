@@ -1,9 +1,10 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ShieldCheck, Eye, BarChart3, Users, Heart, CheckCircle } from "lucide-react";
+import { ShieldCheck, Eye, Heart, Users, CheckCircle } from "lucide-react";
 import { PageHeader } from "@/components/shared/page-header";
 import { CTABanner } from "@/components/shared/cta-banner";
+import { SectionHeader } from "@/components/shared/section-header";
 import { JsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/lib/constants/site";
 
@@ -49,7 +50,7 @@ export default function AboutPage() {
       {/* ── Our Story ─────────────────────────────────────── */}
       <section className="py-16 lg:py-20">
         <div className="mx-auto grid max-w-[1200px] items-center gap-10 px-6 md:grid-cols-2 lg:gap-16 lg:px-8">
-          <div className="overflow-hidden rounded-2xl shadow-lg">
+          <div className="overflow-hidden rounded-2xl shadow-lg ring-4 ring-gold/10 ring-offset-4 ring-offset-white">
             <Image
               src="/images/about-story.jpg"
               alt="Strategic Buys property strategy meeting"
@@ -59,13 +60,11 @@ export default function AboutPage() {
             />
           </div>
           <div>
-            <div className="mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-gold">
-              <span className="inline-block h-0.5 w-7 bg-gold" />
-              Our Story
-            </div>
-            <h2 className="font-heading text-3xl font-bold text-gray-900 lg:text-4xl">
-              Founded on a Simple Belief
-            </h2>
+            <SectionHeader
+              label="Our Story"
+              title="Founded on a Simple Belief"
+              align="left"
+            />
             <p className="mt-4 leading-relaxed text-gray-600">
               Strategic Buys was founded because we believed everyday Australians
               deserved the same level of professional representation in property
@@ -87,19 +86,21 @@ export default function AboutPage() {
       </section>
 
       {/* ── Mission ───────────────────────────────────────── */}
-      <section className="bg-cream py-16 lg:py-20">
+      <section className="gradient-hero py-16 lg:py-20">
         <div className="mx-auto max-w-[800px] px-6 text-center lg:px-8">
-          <div className="mb-2 flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-gold">
-            <span className="inline-block h-0.5 w-7 bg-gold" />
-            Our Mission
+          <SectionHeader label="Our Mission" title="" theme="dark" />
+          <div className="relative mt-4">
+            <span className="absolute -top-6 left-1/2 -translate-x-1/2 font-accent text-8xl leading-none text-gold/10">
+              &ldquo;
+            </span>
+            <blockquote className="relative font-accent text-xl italic leading-relaxed text-white/90 lg:text-2xl">
+              Our mission is to protect the interests of property buyers and
+              help everyday Australians build lasting wealth through smart,
+              strategic property decisions &mdash; with expert guidance they can
+              trust at every step of the journey.
+            </blockquote>
           </div>
-          <blockquote className="font-accent text-xl italic leading-relaxed text-gray-700 lg:text-2xl">
-            &ldquo;Our mission is to protect the interests of property buyers and
-            help everyday Australians build lasting wealth through smart,
-            strategic property decisions &mdash; with expert guidance they can
-            trust at every step of the journey.&rdquo;
-          </blockquote>
-          <p className="mt-4 text-sm font-semibold text-gold">
+          <p className="mt-6 text-sm font-semibold text-gold-light">
             &mdash; The Strategic Buys Team
           </p>
         </div>
@@ -108,17 +109,9 @@ export default function AboutPage() {
       {/* ── Our Values ────────────────────────────────────── */}
       <section className="py-16 lg:py-20">
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
-          <div className="text-center">
-            <div className="mb-2 flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-gold">
-              <span className="inline-block h-0.5 w-7 bg-gold" />
-              Our Values
-            </div>
-            <h2 className="font-heading text-3xl font-bold text-gray-900 lg:text-4xl">
-              What We Stand For
-            </h2>
-          </div>
+          <SectionHeader label="Our Values" title="What We Stand For" />
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-4 sm:grid-cols-2">
             {[
               { icon: ShieldCheck, title: "Integrity", desc: "We tell you what you need to hear, not what you want to hear. Honest advice, always." },
               { icon: Eye, title: "Transparency", desc: "No hidden fees, no surprises. Everything is upfront and clearly communicated." },
@@ -127,15 +120,17 @@ export default function AboutPage() {
             ].map(({ icon: Icon, title, desc }) => (
               <div
                 key={title}
-                className="rounded-xl border border-gray-100 bg-white p-6 text-center transition-all hover:-translate-y-1 hover:shadow-md"
+                className="flex items-start gap-4 rounded-xl border border-gray-100 bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-md"
               >
-                <div className="mx-auto mb-3 flex h-[52px] w-[52px] items-center justify-center rounded-full bg-gradient-to-br from-gold/[0.08] to-purple/[0.06]">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-gold/10 to-purple/5">
                   <Icon className="h-6 w-6 text-gold" />
                 </div>
-                <h3 className="font-heading text-base font-bold text-gray-900">
-                  {title}
-                </h3>
-                <p className="mt-2 text-sm text-gray-600">{desc}</p>
+                <div>
+                  <h3 className="font-heading text-base font-bold text-gray-900">
+                    {title}
+                  </h3>
+                  <p className="mt-1 text-sm text-gray-600">{desc}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -146,13 +141,11 @@ export default function AboutPage() {
       <section className="bg-cream py-16 lg:py-20">
         <div className="mx-auto grid max-w-[1200px] items-center gap-10 px-6 md:grid-cols-2 lg:gap-16 lg:px-8">
           <div>
-            <div className="mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-gold">
-              <span className="inline-block h-0.5 w-7 bg-gold" />
-              Why Us
-            </div>
-            <h2 className="font-heading text-3xl font-bold text-gray-900 lg:text-4xl">
-              What Sets Us Apart
-            </h2>
+            <SectionHeader
+              label="Why Us"
+              title="What Sets Us Apart"
+              align="left"
+            />
             <ul className="mt-6 space-y-3">
               {[
                 "100% independent — we never sell property",
@@ -161,15 +154,17 @@ export default function AboutPage() {
                 "Data-driven property analysis and valuation",
                 "Expert negotiation that consistently saves clients money",
                 "Support from search through to settlement and beyond",
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-2 text-sm text-gray-600">
-                  <CheckCircle className="mt-0.5 h-[18px] w-[18px] shrink-0 text-gold" />
+              ].map((item, idx) => (
+                <li key={item} className="flex items-start gap-3 text-sm text-gray-600">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full gradient-gold text-[10px] font-bold text-white">
+                    {idx + 1}
+                  </span>
                   {item}
                 </li>
               ))}
             </ul>
           </div>
-          <div className="overflow-hidden rounded-2xl shadow-lg">
+          <div className="overflow-hidden rounded-2xl shadow-lg ring-4 ring-gold/10 ring-offset-4 ring-offset-white">
             <Image
               src="/images/why-us.jpg"
               alt="Modern Australian property"

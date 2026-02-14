@@ -14,7 +14,7 @@ interface PageHeaderProps {
 
 export function PageHeader({ title, subtitle, breadcrumbs }: PageHeaderProps) {
   return (
-    <section className="gradient-page-header relative overflow-hidden pt-32 pb-14 text-center lg:pt-40 lg:pb-20">
+    <section className="gradient-page-header relative overflow-hidden pt-28 pb-12 text-center lg:pt-36 lg:pb-16">
       {/* Decorative elements */}
       <div className="pointer-events-none absolute -top-1/4 -right-[8%] h-[400px] w-[400px] rounded-full bg-gold/[0.05]" />
       <div className="pointer-events-none absolute -bottom-1/3 -left-[10%] h-[300px] w-[300px] rounded-full bg-purple-light/[0.06]" />
@@ -52,6 +52,9 @@ export function PageHeader({ title, subtitle, breadcrumbs }: PageHeaderProps) {
             {subtitle}
           </p>
         )}
+
+        {/* Gold rule */}
+        <div className="mx-auto mt-6 h-px w-16 bg-gradient-to-r from-transparent via-gold to-transparent" />
       </div>
     </section>
   );

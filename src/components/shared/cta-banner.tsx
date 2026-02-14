@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { Phone } from "lucide-react";
+import { siteConfig } from "@/lib/constants/site";
 
 interface CTABannerProps {
   title?: string;
@@ -14,24 +16,33 @@ export function CTABanner({
   buttonHref = "/contact",
 }: CTABannerProps) {
   return (
-    <section className="px-6 py-16 lg:px-8 lg:py-20">
-      <div className="gradient-cta relative mx-auto max-w-[1200px] overflow-hidden rounded-2xl px-8 py-14 text-center lg:px-12 lg:py-16">
-        {/* Decorative orb */}
-        <div className="pointer-events-none absolute -top-[40%] -right-[15%] h-[350px] w-[350px] rounded-full bg-gold/[0.06]" />
-        <div className="pointer-events-none absolute -bottom-[30%] -left-[10%] h-[250px] w-[250px] rounded-full bg-white/[0.03]" />
+    <section className="gradient-hero relative overflow-hidden py-16 lg:py-20">
+      {/* Decorative orbs */}
+      <div className="pointer-events-none absolute -top-1/2 right-0 h-[600px] w-[600px] rounded-full bg-gold/[0.04]" />
+      <div className="pointer-events-none absolute -bottom-1/3 -left-[10%] h-[400px] w-[400px] rounded-full bg-purple-light/[0.03]" />
 
-        <h2 className="relative font-heading text-2xl font-bold text-white md:text-3xl lg:text-4xl">
+      <div className="relative mx-auto max-w-[700px] px-6 text-center lg:px-8">
+        <h2 className="font-heading text-3xl font-bold text-white md:text-4xl lg:text-[2.75rem]">
           {title}
         </h2>
-        <p className="relative mx-auto mt-3 mb-8 max-w-[480px] text-base leading-relaxed text-white/90">
+        <p className="mx-auto mt-4 mb-8 max-w-[500px] text-base leading-relaxed text-white/80">
           {subtitle}
         </p>
-        <Link
-          href={buttonHref}
-          className="relative inline-flex items-center gap-2 rounded-lg bg-white px-8 py-3.5 text-sm font-bold text-gray-900 shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-xl"
-        >
-          {buttonText}
-        </Link>
+        <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <Link
+            href={buttonHref}
+            className="gradient-gold inline-flex items-center gap-2 rounded-lg px-8 py-4 text-base font-bold text-white shadow-[--shadow-gold] transition-all hover:-translate-y-0.5 hover:shadow-lg"
+          >
+            {buttonText}
+          </Link>
+          <a
+            href={siteConfig.phoneHref}
+            className="inline-flex items-center gap-2 text-sm font-medium text-white/70 transition-colors hover:text-gold-light"
+          >
+            <Phone className="h-4 w-4" />
+            or call {siteConfig.phone}
+          </a>
+        </div>
       </div>
     </section>
   );

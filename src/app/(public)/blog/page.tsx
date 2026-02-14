@@ -68,18 +68,20 @@ async function BlogContent({ searchParams }: BlogPageProps) {
           {posts.posts.length > 0 ? (
             <>
               <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                {posts.posts.map((post) => (
-                  <BlogCard
-                    key={post.id}
-                    title={post.title}
-                    slug={post.slug}
-                    excerpt={post.excerpt}
-                    featuredImage={post.featuredImage}
-                    publishedAt={post.publishedAt}
-                    category={post.category}
-                    author={post.author}
-                    content={post.content}
-                  />
+                {posts.posts.map((post, idx) => (
+                  <div key={post.id} className={idx === 0 ? "sm:col-span-2 lg:col-span-2" : ""}>
+                    <BlogCard
+                      title={post.title}
+                      slug={post.slug}
+                      excerpt={post.excerpt}
+                      featuredImage={post.featuredImage}
+                      publishedAt={post.publishedAt}
+                      category={post.category}
+                      author={post.author}
+                      content={post.content}
+                      featured={idx === 0}
+                    />
+                  </div>
                 ))}
               </div>
 

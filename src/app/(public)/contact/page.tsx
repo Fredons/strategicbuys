@@ -50,6 +50,20 @@ export default function ContactPage() {
         <div className="mx-auto grid max-w-[1200px] gap-10 px-6 md:grid-cols-[1.2fr_1fr] lg:gap-16 lg:px-8">
           {/* Form */}
           <div>
+            {/* Prominent phone CTA */}
+            <div className="mb-8 rounded-xl bg-gradient-to-r from-gold/5 to-purple/5 p-6 text-center lg:text-left">
+              <p className="text-sm font-semibold text-gray-600">Prefer to talk?</p>
+              <a href={siteConfig.phoneHref} className="font-heading text-2xl font-bold text-gold hover:text-gold-dark">
+                {siteConfig.phone}
+              </a>
+              <p className="mt-1 text-xs text-gray-500">Available 7 days, 9AM–5PM AEST</p>
+            </div>
+
+            <div className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-success/10 px-3 py-1 text-xs font-semibold text-success">
+              <Clock className="h-3 w-3" />
+              We respond within 24 hours
+            </div>
+
             <h2 className="font-heading text-2xl font-bold text-gray-900">
               Send Us a Message
             </h2>

@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { Phone } from "lucide-react";
 import { mainNavLinks } from "@/lib/constants/navigation";
+import { siteConfig } from "@/lib/constants/site";
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -57,14 +59,22 @@ export function MobileNav() {
           className="gradient-gold mt-6 inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold text-white"
           onClick={() => setIsOpen(false)}
         >
-          Book a Free Call
+          Free Strategy Call
         </Link>
+        <a
+          href={siteConfig.phoneHref}
+          className="mt-3 inline-flex items-center justify-center gap-2 text-sm text-gray-500 transition-colors hover:text-gold"
+          onClick={() => setIsOpen(false)}
+        >
+          <Phone className="h-4 w-4" />
+          {siteConfig.phone}
+        </a>
       </nav>
 
       {/* Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/20 lg:hidden"
+          className="fixed inset-0 z-40 bg-black/30 lg:hidden"
           onClick={() => setIsOpen(false)}
         />
       )}
