@@ -66,9 +66,9 @@ export function Header() {
           <div className="flex items-center gap-3 lg:hidden">
             <Link
               href="/contact"
-              className="gradient-gold inline-flex items-center gap-1.5 rounded-lg px-3.5 py-2 text-xs font-semibold text-white shadow-sm transition-all hover:shadow-md"
+              className="gradient-gold inline-flex items-center gap-1.5 rounded-lg px-4 py-2.5 text-[13px] font-semibold text-white shadow-sm transition-all hover:shadow-md"
             >
-              <Phone className="h-3 w-3" />
+              <Phone className="h-3.5 w-3.5" />
               Book a Call
             </Link>
             <MobileNav />
