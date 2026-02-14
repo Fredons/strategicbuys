@@ -69,7 +69,7 @@ export function Header() {
               className="gradient-gold inline-flex items-center gap-1.5 rounded-lg px-3.5 py-2 text-xs font-semibold text-white shadow-sm transition-all hover:shadow-md"
             >
               <Phone className="h-3 w-3" />
-              Free Call
+              Book a Call
             </Link>
             <MobileNav />
           </div>
