@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, Save, Eye } from "lucide-react";
+import { Loader2, Save, Eye, Calendar } from "lucide-react";
 import { slugify } from "@/lib/utils";
+import { ImageUpload } from "@/components/admin/image-upload";
 
 interface Category {
   id: string;
@@ -19,12 +20,21 @@ interface BlogFormProps {
     content: string;
     featuredImage: string | null;
     status: string;
+    publishedAt: string | null;
     categoryId: string | null;
     metaTitle: string | null;
     metaDescription: string | null;
     tags: { id: string; name: string }[];
   };
   categories: Category[];
+}
+
+function toLocalDatetime(dateStr: string | null): string {
+  if (!dateStr) return "";
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) return "";
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
 }
 
 export function BlogForm({ post, categories }: BlogFormProps) {
@@ -36,8 +46,13 @@ export function BlogForm({ post, categories }: BlogFormProps) {
   const [slug, setSlug] = useState(post?.slug || "");
   const [excerpt, setExcerpt] = useState(post?.excerpt || "");
   const [content, setContent] = useState(post?.content || "");
-  const [featuredImage, setFeaturedImage] = useState(post?.featuredImage || "");
+  const [featuredImage, setFeaturedImage] = useState(
+    post?.featuredImage || ""
+  );
   const [status, setStatus] = useState(post?.status || "DRAFT");
+  const [publishedAt, setPublishedAt] = useState(
+    toLocalDatetime(post?.publishedAt || null)
+  );
   const [categoryId, setCategoryId] = useState(post?.categoryId || "");
   const [metaTitle, setMetaTitle] = useState(post?.metaTitle || "");
   const [metaDescription, setMetaDescription] = useState(
@@ -54,6 +69,11 @@ export function BlogForm({ post, categories }: BlogFormProps) {
       setSlug(slugify(title));
     }
   }, [title, isEditing]);
+
+  const isScheduled =
+    status === "PUBLISHED" &&
+    publishedAt &&
+    new Date(publishedAt) > new Date();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -72,6 +92,7 @@ export function BlogForm({ post, categories }: BlogFormProps) {
       content,
       featuredImage: featuredImage || null,
       status,
+      publishedAt: publishedAt ? new Date(publishedAt).toISOString() : null,
       categoryId: categoryId || null,
       metaTitle: metaTitle || null,
       metaDescription: metaDescription || null,
@@ -173,21 +194,50 @@ export function BlogForm({ post, categories }: BlogFormProps) {
           {/* Publish */}
           <div className="rounded-xl border border-gray-200 bg-white p-5">
             <h3 className="mb-3 text-sm font-bold text-gray-900">Publish</h3>
-            <div className="mb-4">
-              <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-gray-700">
-                Status
-              </label>
-              <select
-                value={status}
-                onChange={(e) => setStatus(e.target.value)}
-                className="w-full rounded-lg border-[1.5px] border-gray-200 bg-white px-3 py-2 text-sm text-gray-800 focus:border-gold focus:outline-none"
-              >
-                <option value="DRAFT">Draft</option>
-                <option value="PUBLISHED">Published</option>
-                <option value="ARCHIVED">Archived</option>
-              </select>
+            <div className="space-y-3">
+              <div>
+                <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-gray-700">
+                  Status
+                </label>
+                <select
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value)}
+                  className="w-full rounded-lg border-[1.5px] border-gray-200 bg-white px-3 py-2 text-sm text-gray-800 focus:border-gold focus:outline-none"
+                >
+                  <option value="DRAFT">Draft</option>
+                  <option value="PUBLISHED">Published</option>
+                  <option value="ARCHIVED">Archived</option>
+                </select>
+              </div>
+
+              {status === "PUBLISHED" && (
+                <div>
+                  <label className="mb-1 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-gray-700">
+                    <Calendar className="h-3 w-3" />
+                    Publish Date
+                  </label>
+                  <input
+                    type="datetime-local"
+                    value={publishedAt}
+                    onChange={(e) => setPublishedAt(e.target.value)}
+                    className="w-full rounded-lg border-[1.5px] border-gray-200 bg-white px-3 py-2 text-sm text-gray-800 focus:border-gold focus:outline-none"
+                  />
+                  <p className="mt-1 text-xs text-gray-500">
+                    {isScheduled ? (
+                      <span className="font-medium text-blue-600">
+                        Scheduled — will go live at this date
+                      </span>
+                    ) : publishedAt ? (
+                      "Published immediately"
+                    ) : (
+                      "Leave blank to publish now"
+                    )}
+                  </p>
+                </div>
+              )}
             </div>
-            <div className="flex gap-2">
+
+            <div className="mt-4 flex gap-2">
               <button
                 type="submit"
                 disabled={loading}
@@ -198,7 +248,13 @@ export function BlogForm({ post, categories }: BlogFormProps) {
                 ) : (
                   <Save className="h-4 w-4" />
                 )}
-                {isEditing ? "Update" : "Save"}
+                {isScheduled
+                  ? "Schedule"
+                  : isEditing
+                    ? "Update"
+                    : status === "PUBLISHED"
+                      ? "Publish"
+                      : "Save Draft"}
               </button>
               {isEditing && post.status === "PUBLISHED" && (
                 <a
@@ -251,16 +307,11 @@ export function BlogForm({ post, categories }: BlogFormProps) {
             <h3 className="mb-3 text-sm font-bold text-gray-900">
               Featured Image
             </h3>
-            <input
-              type="text"
+            <ImageUpload
               value={featuredImage}
-              onChange={(e) => setFeaturedImage(e.target.value)}
-              className="w-full rounded-lg border-[1.5px] border-gray-200 bg-white px-3 py-2 text-sm text-gray-800 focus:border-gold focus:outline-none"
-              placeholder="/images/blog/post-image.jpg"
+              onChange={setFeaturedImage}
+              folder="blog"
             />
-            <p className="mt-1 text-xs text-gray-500">
-              Enter image URL or path
-            </p>
           </div>
 
           {/* SEO */}
@@ -268,24 +319,42 @@ export function BlogForm({ post, categories }: BlogFormProps) {
             <h3 className="mb-3 text-sm font-bold text-gray-900">SEO</h3>
             <div className="space-y-3">
               <div>
-                <label className="mb-1 block text-xs text-gray-500">
+                <label className="mb-1 flex items-center justify-between text-xs text-gray-500">
                   Meta Title
+                  <span
+                    className={
+                      metaTitle.length > 60 ? "text-red-500" : "text-gray-400"
+                    }
+                  >
+                    {metaTitle.length}/70
+                  </span>
                 </label>
                 <input
                   type="text"
                   value={metaTitle}
                   onChange={(e) => setMetaTitle(e.target.value)}
+                  maxLength={70}
                   className="w-full rounded-lg border-[1.5px] border-gray-200 bg-white px-3 py-2 text-sm text-gray-800 focus:border-gold focus:outline-none"
                   placeholder="Custom meta title (optional)"
                 />
               </div>
               <div>
-                <label className="mb-1 block text-xs text-gray-500">
+                <label className="mb-1 flex items-center justify-between text-xs text-gray-500">
                   Meta Description
+                  <span
+                    className={
+                      metaDescription.length > 150
+                        ? "text-red-500"
+                        : "text-gray-400"
+                    }
+                  >
+                    {metaDescription.length}/160
+                  </span>
                 </label>
                 <textarea
                   value={metaDescription}
                   onChange={(e) => setMetaDescription(e.target.value)}
+                  maxLength={160}
                   rows={3}
                   className="w-full resize-y rounded-lg border-[1.5px] border-gray-200 bg-white px-3 py-2 text-sm text-gray-800 focus:border-gold focus:outline-none"
                   placeholder="Custom meta description (optional)"

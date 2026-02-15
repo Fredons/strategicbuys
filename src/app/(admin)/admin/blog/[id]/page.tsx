@@ -47,6 +47,7 @@ export default async function AdminEditPostPage({ params }: EditPostPageProps) {
           content: post.content,
           featuredImage: post.featuredImage,
           status: post.status,
+          publishedAt: post.publishedAt?.toISOString() || null,
           categoryId: post.categoryId,
           metaTitle: post.metaTitle,
           metaDescription: post.metaDescription,

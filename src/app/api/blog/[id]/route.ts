@@ -49,7 +49,7 @@ export async function PUT(req: NextRequest, { params }: RouteContext) {
     );
   }
 
-  const { title, slug, excerpt, content, featuredImage, status, categoryId, tags, metaTitle, metaDescription } = parsed.data;
+  const { title, slug, excerpt, content, featuredImage, status, publishedAt: publishedAtStr, categoryId, tags, metaTitle, metaDescription } = parsed.data;
 
   const finalSlug = slug || slugify(title);
 
@@ -70,10 +70,19 @@ export async function PUT(req: NextRequest, { params }: RouteContext) {
     return NextResponse.json({ error: "Post not found" }, { status: 404 });
   }
 
-  const publishedAt =
-    status === "PUBLISHED" && currentPost.status !== "PUBLISHED"
-      ? new Date()
-      : currentPost.publishedAt;
+  // Determine publishedAt date
+  let publishedAt: Date | null;
+  if (status === "PUBLISHED") {
+    if (publishedAtStr) {
+      publishedAt = new Date(publishedAtStr);
+    } else if (currentPost.publishedAt) {
+      publishedAt = currentPost.publishedAt;
+    } else {
+      publishedAt = new Date();
+    }
+  } else {
+    publishedAt = null;
+  }
 
   const post = await prisma.blogPost.update({
     where: { id },

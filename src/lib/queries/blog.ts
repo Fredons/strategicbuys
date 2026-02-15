@@ -9,8 +9,11 @@ export async function getPublishedPosts({
   perPage?: number;
   categorySlug?: string;
 } = {}) {
+  const now = new Date();
+
   const where = {
     status: "PUBLISHED" as const,
+    publishedAt: { lte: now },
     ...(categorySlug && categorySlug !== "all"
       ? { category: { slug: categorySlug } }
       : {}),
@@ -39,8 +42,14 @@ export async function getPublishedPosts({
 }
 
 export async function getPostBySlug(slug: string) {
-  return prisma.blogPost.findUnique({
-    where: { slug },
+  const now = new Date();
+
+  return prisma.blogPost.findFirst({
+    where: {
+      slug,
+      status: "PUBLISHED",
+      publishedAt: { lte: now },
+    },
     include: {
       category: true,
       author: { select: { name: true } },
@@ -50,10 +59,13 @@ export async function getPostBySlug(slug: string) {
 }
 
 export async function getRelatedPosts(postId: string, categoryId: string | null, limit = 3) {
+  const now = new Date();
+
   return prisma.blogPost.findMany({
     where: {
       id: { not: postId },
       status: "PUBLISHED",
+      publishedAt: { lte: now },
       ...(categoryId ? { categoryId } : {}),
     },
     include: {
@@ -66,8 +78,13 @@ export async function getRelatedPosts(postId: string, categoryId: string | null,
 }
 
 export async function getRecentPosts(limit = 3) {
+  const now = new Date();
+
   return prisma.blogPost.findMany({
-    where: { status: "PUBLISHED" },
+    where: {
+      status: "PUBLISHED",
+      publishedAt: { lte: now },
+    },
     include: {
       category: true,
       author: { select: { name: true } },
@@ -84,8 +101,13 @@ export async function getAllCategories() {
 }
 
 export async function getAllPublishedSlugs() {
+  const now = new Date();
+
   return prisma.blogPost.findMany({
-    where: { status: "PUBLISHED" },
+    where: {
+      status: "PUBLISHED",
+      publishedAt: { lte: now },
+    },
     select: { slug: true, updatedAt: true },
   });
 }

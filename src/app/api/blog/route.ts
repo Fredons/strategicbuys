@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const { title, slug, excerpt, content, featuredImage, status, categoryId, tags, metaTitle, metaDescription } = parsed.data;
+  const { title, slug, excerpt, content, featuredImage, status, publishedAt, categoryId, tags, metaTitle, metaDescription } = parsed.data;
 
   const finalSlug = slug || slugify(title);
 
@@ -53,6 +53,12 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  // Determine publishedAt date
+  let finalPublishedAt: Date | null = null;
+  if (status === "PUBLISHED") {
+    finalPublishedAt = publishedAt ? new Date(publishedAt) : new Date();
+  }
+
   const post = await prisma.blogPost.create({
     data: {
       title,
@@ -61,7 +67,7 @@ export async function POST(req: NextRequest) {
       content,
       featuredImage: featuredImage || null,
       status: status || "DRAFT",
-      publishedAt: status === "PUBLISHED" ? new Date() : null,
+      publishedAt: finalPublishedAt,
       categoryId: categoryId || null,
       authorId: session.user.id!,
       metaTitle: metaTitle || null,
