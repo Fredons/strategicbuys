@@ -10,7 +10,6 @@ import {
   CheckCircle,
   Star,
   ArrowRight,
-  Phone,
 } from "lucide-react";
 import { SectionHeader } from "@/components/shared/section-header";
 import { CTABanner } from "@/components/shared/cta-banner";
@@ -43,7 +42,6 @@ export default async function HomePage() {
           "@type": "RealEstateAgent",
           name: siteConfig.name,
           url: siteConfig.url,
-          telephone: siteConfig.phone,
           email: siteConfig.email,
           openingHours: "Mo-Su 09:00-17:00",
           priceRange: "$$",

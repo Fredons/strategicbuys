@@ -20,7 +20,6 @@ export default function PublicLayout({
           description: siteConfig.description,
           contactPoint: {
             "@type": "ContactPoint",
-            telephone: siteConfig.phone,
             email: siteConfig.email,
             contactType: "customer service",
             availableLanguage: "English",

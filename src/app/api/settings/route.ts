@@ -55,8 +55,7 @@ export async function PUT(req: NextRequest) {
     settings = await prisma.siteSettings.create({
       data: {
         siteName: siteName || "Strategic Buys",
-        contactEmail: contactEmail || "info@strategicbuys.com.au",
-        contactPhone: contactPhone || "1300 000 000",
+        contactEmail: contactEmail || "support@strategicbuys.com.au",
         address,
         facebookUrl,
         instagramUrl,

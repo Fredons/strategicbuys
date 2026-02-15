@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { Phone, Mail, Clock } from "lucide-react";
+import { Mail, Clock } from "lucide-react";
 import { PageHeader } from "@/components/shared/page-header";
 import { ContactForm } from "@/components/contact/contact-form";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -22,7 +22,6 @@ export default function ContactPage() {
           mainEntity: {
             "@type": "RealEstateAgent",
             name: siteConfig.name,
-            telephone: siteConfig.phone,
             email: siteConfig.email,
             openingHours: "Mo-Su 09:00-17:00",
             areaServed: { "@type": "Country", name: "Australia" },
@@ -50,15 +49,6 @@ export default function ContactPage() {
         <div className="mx-auto grid max-w-[1200px] gap-10 px-6 md:grid-cols-[1.2fr_1fr] lg:gap-16 lg:px-8">
           {/* Form */}
           <div>
-            {/* Prominent phone CTA */}
-            <div className="mb-8 rounded-xl bg-gradient-to-r from-gold/5 to-purple/5 p-6 text-center lg:text-left">
-              <p className="text-sm font-semibold text-gray-600">Prefer to talk?</p>
-              <a href={siteConfig.phoneHref} className="font-heading text-2xl font-bold text-gold hover:text-gold-dark">
-                {siteConfig.phone}
-              </a>
-              <p className="mt-1 text-xs text-gray-500">Available 7 days, 9AM–5PM AEST</p>
-            </div>
-
             <div className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-success/10 px-3 py-1 text-xs font-semibold text-success">
               <Clock className="h-3 w-3" />
               We respond within 24 hours
@@ -81,16 +71,9 @@ export default function ContactPage() {
               </h3>
               <div className="space-y-4">
                 <div className="flex items-start gap-3 text-sm text-gray-600">
-                  <Phone className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
-                  <div>
-                    <div className="font-semibold text-gray-800">{siteConfig.phone}</div>
-                    <div className="text-gray-500">Available 7 days a week</div>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3 text-sm text-gray-600">
                   <Mail className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
                   <div>
-                    <div className="font-semibold text-gray-800">{siteConfig.email}</div>
+                    <a href={`mailto:${siteConfig.email}`} className="font-semibold text-gray-800 hover:text-gold">{siteConfig.email}</a>
                     <div className="text-gray-500">We respond within 24 hours</div>
                   </div>
                 </div>

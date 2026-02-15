@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Phone } from "lucide-react";
+import { Mail } from "lucide-react";
 import { siteConfig } from "@/lib/constants/site";
 
 interface CTABannerProps {
@@ -36,11 +36,11 @@ export function CTABanner({
             {buttonText}
           </Link>
           <a
-            href={siteConfig.phoneHref}
+            href={`mailto:${siteConfig.email}`}
             className="inline-flex items-center gap-2 text-sm font-medium text-white/70 transition-colors hover:text-gold-light"
           >
-            <Phone className="h-4 w-4" />
-            or call {siteConfig.phone}
+            <Mail className="h-4 w-4" />
+            {siteConfig.email}
           </a>
         </div>
       </div>

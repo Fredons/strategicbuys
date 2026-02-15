@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import {
   MapPin,
-  Phone,
   CheckCircle,
   ArrowRight,
   Search,
@@ -86,7 +85,6 @@ export default async function LocationPage({ params }: LocationPageProps) {
           name: siteConfig.name,
           description: loc.metaDescription,
           url: `${siteConfig.url}/${loc.slug}`,
-          telephone: siteConfig.phone,
           email: siteConfig.email,
           areaServed: {
             "@type": "City",
@@ -143,13 +141,6 @@ export default async function LocationPage({ params }: LocationPageProps) {
               Book a Free Consultation
               <ArrowRight className="h-4 w-4" />
             </Link>
-            <a
-              href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}
-              className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-gold hover:bg-gold/10 hover:text-gold-lighter"
-            >
-              <Phone className="h-4 w-4" />
-              {siteConfig.phone}
-            </a>
           </div>
         </div>
       </section>

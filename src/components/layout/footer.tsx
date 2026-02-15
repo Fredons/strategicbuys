@@ -7,7 +7,7 @@ import {
 } from "@/lib/constants/navigation";
 import { siteConfig } from "@/lib/constants/site";
 import { locations } from "@/lib/constants/locations";
-import { Mail, Phone, Clock, Facebook, Instagram, Linkedin, ShieldCheck } from "lucide-react";
+import { Mail, Clock, Facebook, Instagram, Linkedin, ShieldCheck } from "lucide-react";
 
 export function Footer() {
   return (
@@ -125,11 +125,7 @@ export function Footer() {
             <div className="space-y-3">
               <div className="flex items-start gap-2 text-sm text-gray-400">
                 <Mail className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-                <span>{siteConfig.email}</span>
-              </div>
-              <div className="flex items-start gap-2 text-sm text-gray-400">
-                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-                <span>{siteConfig.phone}</span>
+                <a href={`mailto:${siteConfig.email}`} className="transition-colors hover:text-gold-light">{siteConfig.email}</a>
               </div>
               <div className="flex items-start gap-2 text-sm text-gray-400">
                 <Clock className="mt-0.5 h-4 w-4 shrink-0 text-gold" />

@@ -3,9 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Phone, X } from "lucide-react";
+import { X } from "lucide-react";
 import { mainNavLinks } from "@/lib/constants/navigation";
-import { siteConfig } from "@/lib/constants/site";
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -78,14 +77,6 @@ export function MobileNav() {
         >
           Free Strategy Call
         </Link>
-        <a
-          href={siteConfig.phoneHref}
-          className="mt-3 inline-flex items-center justify-center gap-2 text-sm text-gray-500 transition-colors hover:text-gold"
-          onClick={() => setIsOpen(false)}
-        >
-          <Phone className="h-4 w-4" />
-          {siteConfig.phone}
-        </a>
       </nav>
     </>
   );

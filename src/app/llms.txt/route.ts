@@ -31,7 +31,6 @@ ${locations.map((loc) => `- ${loc.heroTitle}: ${siteConfig.url}/${loc.slug}`).jo
 
 ## Contact
 - Email: ${siteConfig.email}
-- Phone: ${siteConfig.phone}
 - Hours: ${siteConfig.hours}
 - Website: ${siteConfig.url}
 `;

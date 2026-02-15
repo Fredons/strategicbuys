@@ -107,12 +107,6 @@ export default function DisclaimerPage() {
               Email:{" "}
               <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
             </li>
-            <li>
-              Phone:{" "}
-              <a href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}>
-                {siteConfig.phone}
-              </a>
-            </li>
           </ul>
         </div>
       </section>

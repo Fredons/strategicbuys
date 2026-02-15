@@ -3,11 +3,9 @@ export const siteConfig = {
   description:
     "Strategic Buys is Australia's trusted buyer's agency. Expert property sourcing, negotiation & investment strategy for home buyers and investors nationwide.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://strategicbuys.com.au",
-  email: "info@strategicbuys.com.au",
-  phone: "1300 BUYS AU",
-  phoneHref: "tel:1300289728",
+  email: "support@strategicbuys.com.au",
   hours: "Mon\u2013Sun: 9:00 AM\u20135:00 PM AEST",
-  abn: "XX XXX XXX XXX", // TODO: Replace with real ABN
+  abn: "22 691 484 321",
   address: {
     street: "", // TODO: Replace with real address
     city: "",

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, Clock } from "lucide-react";
+import { Mail, Clock } from "lucide-react";
 import { mainNavLinks } from "@/lib/constants/navigation";
 import { siteConfig } from "@/lib/constants/site";
 import { MobileNav } from "./mobile-nav";
@@ -12,11 +12,11 @@ export function Header() {
       <div className="hidden border-b border-gray-100 bg-gray-50 lg:block">
         <div className="mx-auto flex max-w-[1400px] items-center justify-end gap-4 px-6 py-1.5 text-xs text-gray-500 lg:px-8">
           <a
-            href={siteConfig.phoneHref}
+            href={`mailto:${siteConfig.email}`}
             className="flex items-center gap-1 transition-colors hover:text-gold"
           >
-            <Phone className="h-3 w-3" />
-            {siteConfig.phone}
+            <Mail className="h-3 w-3" />
+            {siteConfig.email}
           </a>
           <span className="h-3 w-px bg-gray-200" />
           <span className="flex items-center gap-1">
@@ -68,7 +68,6 @@ export function Header() {
               href="/contact"
               className="gradient-gold inline-flex items-center gap-1.5 rounded-lg px-4 py-2.5 text-[13px] font-semibold text-white shadow-sm transition-all hover:shadow-md"
             >
-              <Phone className="h-3.5 w-3.5" />
               Book a Call
             </Link>
             <MobileNav />
