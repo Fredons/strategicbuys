@@ -32,3 +32,16 @@ export async function PATCH(req: NextRequest, { params }: RouteContext) {
 
   return NextResponse.json(enquiry);
 }
+
+export async function DELETE(_req: NextRequest, { params }: RouteContext) {
+  const session = await auth();
+  if (!session?.user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const { id } = await params;
+
+  await prisma.enquiry.delete({ where: { id } });
+
+  return NextResponse.json({ success: true });
+}

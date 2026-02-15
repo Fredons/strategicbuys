@@ -18,8 +18,8 @@ export default async function AdminLayout({
     <SessionProvider>
       <div className="min-h-screen bg-gray-50">
         <AdminSidebar />
-        <main className="ml-[240px] min-h-screen">
-          <div className="px-6 py-8 lg:px-10">{children}</div>
+        <main className="min-h-screen pt-14 lg:ml-[260px] lg:pt-0">
+          <div className="px-4 py-6 sm:px-6 lg:px-10 lg:py-8">{children}</div>
         </main>
       </div>
     </SessionProvider>
