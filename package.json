@@ -12,6 +12,7 @@
     "db:seed:blog": "npx tsx prisma/seed-blog-phase2.ts",
     "db:seed:blog3": "npx tsx prisma/seed-blog-phase3.ts",
     "db:update:posts": "npx tsx prisma/update-existing-posts.ts",
+    "db:submit-urls": "npx tsx prisma/submit-urls.ts",
     "db:studio": "npx prisma studio",
     "db:generate": "npx prisma generate",
     "postinstall": "prisma generate"

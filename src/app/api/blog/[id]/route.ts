@@ -4,6 +4,8 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { blogPostSchema } from "@/lib/validations/blog";
 import { slugify } from "@/lib/utils";
+import { siteConfig } from "@/lib/constants/site";
+import { notifySearchEngines } from "@/lib/indexing";
 
 interface RouteContext {
   params: Promise<{ id: string }>;
@@ -112,6 +114,11 @@ export async function PUT(req: NextRequest, { params }: RouteContext) {
   revalidatePath("/blog");
   revalidatePath(`/blog/${post.slug}`);
 
+  // Notify search engines of updated published post (fire-and-forget)
+  if (post.status === "PUBLISHED") {
+    notifySearchEngines(`${siteConfig.url}/blog/${post.slug}`, "update");
+  }
+
   return NextResponse.json(post);
 }
 
@@ -130,7 +137,11 @@ export async function DELETE(req: NextRequest, { params }: RouteContext) {
 
   // Revalidate blog pages
   revalidatePath("/blog");
-  if (post) revalidatePath(`/blog/${post.slug}`);
+  if (post) {
+    revalidatePath(`/blog/${post.slug}`);
+    // Notify search engines of deleted post (fire-and-forget)
+    notifySearchEngines(`${siteConfig.url}/blog/${post.slug}`, "delete");
+  }
 
   return NextResponse.json({ success: true });
 }

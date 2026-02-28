@@ -4,6 +4,8 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { blogPostSchema } from "@/lib/validations/blog";
 import { slugify } from "@/lib/utils";
+import { siteConfig } from "@/lib/constants/site";
+import { notifySearchEngines } from "@/lib/indexing";
 
 export async function GET() {
   const session = await auth();
@@ -86,6 +88,11 @@ export async function POST(req: NextRequest) {
 
   // Revalidate blog listing so new post appears immediately
   revalidatePath("/blog");
+
+  // Notify search engines of new published post (fire-and-forget)
+  if (post.status === "PUBLISHED") {
+    notifySearchEngines(`${siteConfig.url}/blog/${post.slug}`, "update");
+  }
 
   return NextResponse.json(post, { status: 201 });
 }
