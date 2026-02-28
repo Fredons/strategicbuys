@@ -9,8 +9,8 @@ import { getPublishedPosts, getAllCategories } from "@/lib/queries/blog";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-// Revalidate cached page every 60 seconds (ISR)
-export const revalidate = 60;
+// Always serve fresh data from database
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Blog | Property Insights & Buyer's Agent Tips",

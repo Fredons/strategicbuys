@@ -19,8 +19,8 @@ interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
 }
 
-// Revalidate cached pages every 60 seconds (ISR)
-export const revalidate = 60;
+// Always serve fresh data from database
+export const dynamic = "force-dynamic";
 
 export async function generateStaticParams() {
   try {
