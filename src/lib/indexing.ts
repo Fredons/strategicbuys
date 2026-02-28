@@ -45,7 +45,7 @@ async function submitToIndexNow(urls: string[]): Promise<void> {
       body: JSON.stringify({
         host,
         key: INDEXNOW_API_KEY,
-        keyLocation: `${siteConfig.url}/api/indexnow`,
+        keyLocation: `${siteConfig.url}/${INDEXNOW_API_KEY}.txt`,
         urlList: urls,
       }),
     });
