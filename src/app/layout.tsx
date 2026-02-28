@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display, Cormorant_Garamond } from "next/font/google";
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import "./globals.css";
 
 const inter = Inter({
@@ -31,16 +32,27 @@ export const metadata: Metadata = {
   keywords: [
     "buyers agent Australia",
     "buyers advocate",
+    "buyers advocate Australia",
     "property buyer agent",
     "buyer's agency",
-    "investment property",
+    "buyer's agency Australia",
+    "investment property Australia",
     "off-market properties",
     "property negotiation",
-    "auction bidding",
+    "auction bidding Australia",
     "buyer's agent Sydney",
     "buyer's agent Melbourne",
     "buyer's agent Brisbane",
     "buyer's agent Perth",
+    "buyer's agent Adelaide",
+    "buyer's agent Gold Coast",
+    "buyer's agent Canberra",
+    "buyer's agent Hobart",
+    "property investment strategy",
+    "first home buyer agent",
+    "NDIS property investment",
+    "property sourcing Australia",
+    "independent buyers agent",
   ],
   authors: [{ name: "Strategic Buys" }],
   creator: "Strategic Buys",
@@ -82,7 +94,10 @@ export default function RootLayout({
       lang="en-AU"
       className={`${inter.variable} ${playfairDisplay.variable} ${cormorantGaramond.variable}`}
     >
-      <body className="font-body antialiased">{children}</body>
+      <body className="font-body antialiased">
+        <GoogleAnalytics />
+        {children}
+      </body>
     </html>
   );
 }

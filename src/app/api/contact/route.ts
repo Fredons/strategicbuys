@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { contactSchema } from "@/lib/validations/contact";
 import { prisma } from "@/lib/prisma";
+import {
+  sendEnquiryNotification,
+  sendEnquiryConfirmation,
+} from "@/lib/email";
 
 export async function POST(req: NextRequest) {
   try {
@@ -17,10 +21,12 @@ export async function POST(req: NextRequest) {
     const { firstName, lastName, email, phone, service, budget, message } =
       parsed.data;
 
+    const fullName = `${firstName} ${lastName}`;
+
     // Save enquiry to database
     const enquiry = await prisma.enquiry.create({
       data: {
-        name: `${firstName} ${lastName}`,
+        name: fullName,
         email,
         phone: phone || null,
         service: service || null,
@@ -30,8 +36,19 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    // TODO: Send notification email via Resend when API key is configured
-    // TODO: Send confirmation email to user
+    // Send email notifications (non-blocking — don't let email failures break the form)
+    const emailData = {
+      name: fullName,
+      email,
+      phone,
+      service,
+      budget,
+      message,
+    };
+    await Promise.allSettled([
+      sendEnquiryNotification(emailData),
+      sendEnquiryConfirmation(emailData),
+    ]);
 
     return NextResponse.json(
       { success: true, id: enquiry.id },

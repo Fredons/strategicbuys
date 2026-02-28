@@ -9,6 +9,10 @@ import {
   Handshake,
   ShieldCheck,
   Users,
+  TrendingUp,
+  Home,
+  DollarSign,
+  BarChart3,
 } from "lucide-react";
 import { JsonLd } from "@/components/seo/json-ld";
 import { CTABanner } from "@/components/shared/cta-banner";
@@ -76,6 +80,8 @@ export default async function LocationPage({ params }: LocationPageProps) {
     },
   ];
 
+  const { marketInsights } = loc;
+
   return (
     <>
       <JsonLd
@@ -101,6 +107,12 @@ export default async function LocationPage({ params }: LocationPageProps) {
           },
           openingHours: "Mo-Su 09:00-17:00",
           priceRange: "$$",
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: siteConfig.stats.rating,
+            reviewCount: siteConfig.stats.reviewCount,
+            bestRating: 5,
+          },
         }}
       />
       <JsonLd
@@ -145,8 +157,110 @@ export default async function LocationPage({ params }: LocationPageProps) {
         </div>
       </section>
 
-      {/* Why Us */}
+      {/* Market Insights */}
+      <section className="bg-off-white py-12 lg:py-14">
+        <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
+          <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
+            <div className="flex items-center gap-3 rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gold/10">
+                <Home className="h-5 w-5 text-gold" />
+              </div>
+              <div>
+                <div className="text-lg font-bold text-gray-900">
+                  {marketInsights.medianHousePrice}
+                </div>
+                <div className="text-xs text-gray-500">Median House Price</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gold/10">
+                <TrendingUp className="h-5 w-5 text-gold" />
+              </div>
+              <div>
+                <div className="text-lg font-bold text-gray-900">
+                  {marketInsights.annualGrowth}
+                </div>
+                <div className="text-xs text-gray-500">Annual Growth</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gold/10">
+                <DollarSign className="h-5 w-5 text-gold" />
+              </div>
+              <div>
+                <div className="text-lg font-bold text-gray-900">
+                  {marketInsights.rentalYield}
+                </div>
+                <div className="text-xs text-gray-500">Rental Yield</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gold/10">
+                <BarChart3 className="h-5 w-5 text-gold" />
+              </div>
+              <div>
+                <div className="text-lg font-bold text-gray-900">
+                  {marketInsights.hotSuburbs.length}+
+                </div>
+                <div className="text-xs text-gray-500">Growth Suburbs</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Market Summary + Hot Suburbs */}
       <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[2fr_1fr] lg:gap-16">
+            <div>
+              <SectionHeader
+                label={`${loc.city} Market`}
+                title={`${loc.city} Property Market Overview`}
+                align="left"
+              />
+              <p className="mt-4 leading-relaxed text-gray-600">
+                {marketInsights.marketSummary}
+              </p>
+              <p className="mt-3 leading-relaxed text-gray-600">
+                Whether you&apos;re a first-home buyer looking for your dream
+                home or an investor building a portfolio, having a dedicated
+                buyer&apos;s agent who understands the {loc.city} market can save
+                you tens of thousands of dollars and months of searching.
+              </p>
+              <Link
+                href="/contact"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gold transition-all hover:gap-3 hover:text-gold-dark"
+              >
+                Discuss Your {loc.city} Property Goals
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+            <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm">
+              <h3 className="font-heading text-base font-bold text-gray-900">
+                Growth Suburbs to Watch
+              </h3>
+              <p className="mt-1 text-sm text-gray-500">
+                Areas our analysts are watching in {loc.city}
+              </p>
+              <ul className="mt-4 space-y-2.5">
+                {marketInsights.hotSuburbs.map((suburb) => (
+                  <li
+                    key={suburb}
+                    className="flex items-center gap-2 text-sm text-gray-600"
+                  >
+                    <MapPin className="h-3.5 w-3.5 shrink-0 text-gold" />
+                    {suburb}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Us */}
+      <section className="border-t border-gray-100 bg-gray-50 py-16 lg:py-20">
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <SectionHeader
             label={loc.city}
@@ -178,7 +292,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
       </section>
 
       {/* Services */}
-      <section className="border-t border-gray-100 bg-gray-50 py-16 lg:py-20">
+      <section className="py-16 lg:py-20">
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <SectionHeader
             label="Services"
@@ -233,7 +347,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
       </section>
 
       {/* Process */}
-      <section className="py-16 lg:py-20">
+      <section className="border-t border-gray-100 bg-gray-50 py-16 lg:py-20">
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <SectionHeader
             label="Our Process"
@@ -260,7 +374,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
       </section>
 
       {/* Other Locations */}
-      <section className="border-t border-gray-100 bg-gray-50 py-16 lg:py-20">
+      <section className="py-16 lg:py-20">
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <SectionHeader label="Locations" title="We Also Serve" />
 

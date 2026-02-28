@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactSchema, type ContactFormData } from "@/lib/validations/contact";
+import { trackEvent } from "@/components/analytics/google-analytics";
 import { CheckCircle, Loader2 } from "lucide-react";
 
 export function ContactForm() {
@@ -28,6 +29,7 @@ export function ContactForm() {
         body: JSON.stringify(data),
       });
       if (!res.ok) throw new Error("Failed to send message");
+      trackEvent("form_submit", "contact", data.service || "general");
       setSubmitted(true);
       reset();
     } catch {

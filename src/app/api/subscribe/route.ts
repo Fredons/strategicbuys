@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { subscribeSchema } from "@/lib/validations/subscribe";
 import { prisma } from "@/lib/prisma";
+import { sendWelcomeEmail } from "@/lib/email";
 
 export async function POST(req: NextRequest) {
   try {
@@ -28,6 +29,7 @@ export async function POST(req: NextRequest) {
           where: { email },
           data: { status: "ACTIVE", unsubscribedAt: null },
         });
+        await sendWelcomeEmail(email, name);
         return NextResponse.json({ success: true, resubscribed: true });
       }
       return NextResponse.json({ success: true, alreadySubscribed: true });
@@ -40,7 +42,8 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    // TODO: Send welcome email via Resend when API key is configured
+    // Send welcome email (non-blocking)
+    await sendWelcomeEmail(email, name).catch(() => {});
 
     return NextResponse.json({ success: true }, { status: 201 });
   } catch (error) {

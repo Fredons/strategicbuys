@@ -8,6 +8,12 @@ export default function PublicLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const socialLinks = [
+    siteConfig.social.facebook,
+    siteConfig.social.instagram,
+    siteConfig.social.linkedin,
+  ].filter((url) => url !== "#");
+
   return (
     <>
       <JsonLd
@@ -15,9 +21,11 @@ export default function PublicLayout({
           "@context": "https://schema.org",
           "@type": "Organization",
           name: siteConfig.name,
+          legalName: siteConfig.legalName,
           url: siteConfig.url,
           logo: `${siteConfig.url}/images/PNG.png`,
-          description: siteConfig.description,
+          description: siteConfig.longDescription,
+          foundingDate: siteConfig.foundingDate,
           contactPoint: {
             "@type": "ContactPoint",
             email: siteConfig.email,
@@ -25,11 +33,15 @@ export default function PublicLayout({
             availableLanguage: "English",
             areaServed: "AU",
           },
-          sameAs: [
-            siteConfig.social.facebook,
-            siteConfig.social.instagram,
-            siteConfig.social.linkedin,
-          ].filter((url) => url !== "#"),
+          areaServed: siteConfig.serviceArea.cities.map((city) => ({
+            "@type": "City",
+            name: city,
+            containedInPlace: {
+              "@type": "Country",
+              name: "Australia",
+            },
+          })),
+          ...(socialLinks.length > 0 ? { sameAs: socialLinks } : {}),
         }}
       />
       <JsonLd
@@ -38,6 +50,14 @@ export default function PublicLayout({
           "@type": "WebSite",
           name: siteConfig.name,
           url: siteConfig.url,
+          potentialAction: {
+            "@type": "SearchAction",
+            target: {
+              "@type": "EntryPoint",
+              urlTemplate: `${siteConfig.url}/blog?q={search_term_string}`,
+            },
+            "query-input": "required name=search_term_string",
+          },
         }}
       />
       <Header />

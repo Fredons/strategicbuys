@@ -16,6 +16,7 @@ import { CTABanner } from "@/components/shared/cta-banner";
 import { JsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/lib/constants/site";
 import { processSteps } from "@/lib/constants/services";
+import { faqGroups } from "@/lib/constants/faq";
 import { getRecentPosts } from "@/lib/queries/blog";
 import { formatDate, formatCategory } from "@/lib/utils";
 
@@ -62,6 +63,31 @@ export default async function HomePage() {
             "Auction Bidding",
             "Investment Strategy",
           ],
+          areaServed: siteConfig.serviceArea.cities.map((city) => ({
+            "@type": "City",
+            name: city,
+            containedInPlace: {
+              "@type": "Country",
+              name: "Australia",
+            },
+          })),
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqGroups
+            .flatMap((g) => g.items)
+            .slice(0, 5)
+            .map((item) => ({
+              "@type": "Question",
+              name: item.question,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: item.answer,
+              },
+            })),
         }}
       />
 
