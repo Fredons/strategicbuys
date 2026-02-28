@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { blogPostSchema } from "@/lib/validations/blog";
@@ -107,6 +108,10 @@ export async function PUT(req: NextRequest, { params }: RouteContext) {
     },
   });
 
+  // Revalidate blog pages so changes appear immediately
+  revalidatePath("/blog");
+  revalidatePath(`/blog/${post.slug}`);
+
   return NextResponse.json(post);
 }
 
@@ -118,7 +123,14 @@ export async function DELETE(req: NextRequest, { params }: RouteContext) {
 
   const { id } = await params;
 
+  // Get slug before deleting for revalidation
+  const post = await prisma.blogPost.findUnique({ where: { id }, select: { slug: true } });
+
   await prisma.blogPost.delete({ where: { id } });
+
+  // Revalidate blog pages
+  revalidatePath("/blog");
+  if (post) revalidatePath(`/blog/${post.slug}`);
 
   return NextResponse.json({ success: true });
 }

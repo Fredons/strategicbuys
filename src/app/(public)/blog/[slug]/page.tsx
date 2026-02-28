@@ -19,6 +19,9 @@ interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
 }
 
+// Revalidate cached pages every 60 seconds (ISR)
+export const revalidate = 60;
+
 export async function generateStaticParams() {
   try {
     const posts: { slug: string }[] = await getAllPublishedSlugs();
