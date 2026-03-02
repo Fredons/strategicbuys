@@ -15,17 +15,23 @@ export async function PATCH(req: NextRequest, { params }: RouteContext) {
   const { id } = await params;
   const body = await req.json();
 
-  const { status, notes } = body;
+  const { status, notes, priority } = body;
 
   const validStatuses = ["NEW", "READ", "REPLIED", "ARCHIVED"];
   if (status && !validStatuses.includes(status)) {
     return NextResponse.json({ error: "Invalid status" }, { status: 400 });
   }
 
+  const validPriorities = ["HOT", "WARM", "COLD"];
+  if (priority && !validPriorities.includes(priority)) {
+    return NextResponse.json({ error: "Invalid priority" }, { status: 400 });
+  }
+
   const enquiry = await prisma.enquiry.update({
     where: { id },
     data: {
       ...(status && { status }),
+      ...(priority && { priority }),
       ...(notes !== undefined && { notes }),
     },
   });

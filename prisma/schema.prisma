@@ -148,15 +148,18 @@ model Enquiry {
   budget  String? @db.VarChar(100)
   message String  @db.Text
 
-  status EnquiryStatus @default(NEW)
-  notes  String?       @db.Text
+  status   EnquiryStatus   @default(NEW)
+  priority EnquiryPriority @default(COLD)
+  notes    String?         @db.Text
 
-  source String? @db.VarChar(50)
+  source         String?   @db.VarChar(50)
+  followUpSentAt DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([status, createdAt(sort: Desc)])
+  @@index([priority])
   @@map("enquiries")
 }
 
@@ -165,6 +168,12 @@ enum EnquiryStatus {
   READ
   REPLIED
   ARCHIVED
+}
+
+enum EnquiryPriority {
+  HOT
+  WARM
+  COLD
 }
 
 // ─── Newsletter ─────────────────────────────────────────────────
@@ -206,6 +215,8 @@ model SiteSettings {
   defaultMetaTitle       String? @db.VarChar(70)
   defaultMetaDescription String? @db.VarChar(160)
   googleAnalyticsId      String? @db.VarChar(50)
+
+  notificationEmails String? @db.Text
 
   updatedAt DateTime @updatedAt
 

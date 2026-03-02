@@ -4,7 +4,13 @@ import { prisma } from "@/lib/prisma";
 import {
   sendEnquiryNotification,
   sendEnquiryConfirmation,
+  getNotificationEmails,
 } from "@/lib/email";
+import { scoreLead } from "@/lib/lead-scoring";
+import {
+  serviceBlogMapping,
+  defaultBlogSlugs,
+} from "@/lib/constants/blog-mapping";
 
 export async function POST(req: NextRequest) {
   try {
@@ -23,6 +29,9 @@ export async function POST(req: NextRequest) {
 
     const fullName = `${firstName} ${lastName}`;
 
+    // Score the lead
+    const priority = scoreLead({ service, budget, message });
+
     // Save enquiry to database
     const enquiry = await prisma.enquiry.create({
       data: {
@@ -32,9 +41,33 @@ export async function POST(req: NextRequest) {
         service: service || null,
         budget: budget || null,
         message,
+        priority,
         source: "contact-form",
       },
     });
+
+    // Get notification recipients from settings
+    const recipients = await getNotificationEmails();
+
+    // Look up relevant blog posts based on service
+    const slugs = service
+      ? serviceBlogMapping[service] || defaultBlogSlugs
+      : defaultBlogSlugs;
+
+    let blogPosts: { title: string; slug: string }[] = [];
+    try {
+      const posts = await prisma.blogPost.findMany({
+        where: {
+          slug: { in: slugs },
+          status: "PUBLISHED",
+        },
+        select: { title: true, slug: true },
+        take: 3,
+      });
+      blogPosts = posts;
+    } catch {
+      // Non-critical — continue without blog posts
+    }
 
     // Send email notifications (non-blocking — don't let email failures break the form)
     const emailData = {
@@ -46,8 +79,8 @@ export async function POST(req: NextRequest) {
       message,
     };
     await Promise.allSettled([
-      sendEnquiryNotification(emailData),
-      sendEnquiryConfirmation(emailData),
+      sendEnquiryNotification(emailData, recipients),
+      sendEnquiryConfirmation(emailData, blogPosts),
     ]);
 
     return NextResponse.json(

@@ -16,6 +16,7 @@ interface SettingsFormProps {
     linkedinUrl: string | null;
     defaultMetaTitle: string | null;
     defaultMetaDescription: string | null;
+    notificationEmails: string | null;
   } | null;
 }
 
@@ -33,6 +34,9 @@ export function SettingsForm({ settings }: SettingsFormProps) {
     settings?.contactPhone || ""
   );
   const [address, setAddress] = useState(settings?.address || "");
+  const [notificationEmails, setNotificationEmails] = useState(
+    settings?.notificationEmails || ""
+  );
   const [facebookUrl, setFacebookUrl] = useState(settings?.facebookUrl || "");
   const [instagramUrl, setInstagramUrl] = useState(
     settings?.instagramUrl || ""
@@ -60,6 +64,7 @@ export function SettingsForm({ settings }: SettingsFormProps) {
           contactEmail,
           contactPhone,
           address: address || null,
+          notificationEmails: notificationEmails || null,
           facebookUrl: facebookUrl || null,
           instagramUrl: instagramUrl || null,
           linkedinUrl: linkedinUrl || null,
@@ -138,6 +143,31 @@ export function SettingsForm({ settings }: SettingsFormProps) {
               className="w-full rounded-lg border-[1.5px] border-gray-200 bg-white px-4 py-3 text-sm text-gray-800 focus:border-gold focus:outline-none"
               placeholder="123 Street, City, State, Postcode"
             />
+          </div>
+        </div>
+      </div>
+
+      {/* Notifications */}
+      <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm">
+        <h2 className="mb-5 text-sm font-bold text-gray-900">
+          Enquiry Notifications
+        </h2>
+        <div className="space-y-4">
+          <div>
+            <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-gray-700">
+              Notification Emails
+            </label>
+            <textarea
+              value={notificationEmails}
+              onChange={(e) => setNotificationEmails(e.target.value)}
+              rows={3}
+              className="w-full resize-y rounded-lg border-[1.5px] border-gray-200 bg-white px-4 py-3 text-sm text-gray-800 focus:border-gold focus:outline-none"
+              placeholder={"support@strategicbuys.com.au\nstratinvest.go@gmail.com"}
+            />
+            <p className="mt-1.5 text-xs text-gray-500">
+              One email per line. All listed emails will receive enquiry
+              notifications from the contact form.
+            </p>
           </div>
         </div>
       </div>
